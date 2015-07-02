@@ -3,7 +3,7 @@ Learning Path Template
 
 Template for Learning Path starter page.
 
-To work with teplate:
+To work with template:
 
 1. clone repository
 2. run npm install (to install all needed modules)
