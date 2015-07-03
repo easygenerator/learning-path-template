@@ -19,7 +19,7 @@
 
     viewModel.init().always(function () {
         $(document).ready(function () {
-            ko.applyBindings(viewModel, $('.learning-path-container')[0]);
+            ko.applyBindings(viewModel, $('html')[0]);
         });
     });
 

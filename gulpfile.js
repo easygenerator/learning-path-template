@@ -24,10 +24,7 @@ gulp.task('build-app', ['clean'], function () {
         .pipe(useref())
         .pipe(gulp.dest(output));
 
-    gulp.src('css/font/**')
+    return gulp.src('css/font/**')
        .pipe(gulp.dest(output + '/css/font'));
-
-    return gulp.src('css/img/**')
-       .pipe(gulp.dest(output + '/css/img'));
 });
 
