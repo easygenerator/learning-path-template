@@ -7,7 +7,7 @@
     };
 
     viewModel.init = function () {
-        var dataUrl = '../data/data.json';
+        var dataUrl = 'data/data.json';
 
         return $.getJSON(dataUrl).then(function (data) {
             viewModel.title = data.title;
