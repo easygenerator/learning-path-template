@@ -19,20 +19,26 @@
 @font-face {
     font-weight: normal;
     font-style: normal;
-    font-family: 'roboto-regular';
+    font-family: 'Roboto-Regular';
     src: url('./font/roboto-regular.woff') format('woff'), url('./font/roboto-regular.woff') format('truetype'), url('./font/roboto-regular.woff#robotoRegular') format('svg');
 }
 
 @font-face {
     font-weight: normal;
     font-style: normal;
-    font-family: 'robotoSlab-regular';
+    font-family: 'RobotoSlab-Regular';
     src: url('./font/robotoslab-regular.woff') format('woff'), url('./font/robotoslab-regular.ttf') format('truetype'), url('./font/robotoslab-regular.svg#robotoSlab-regular.') format('svg');
 }
 
 /*#endregion FONTS CONNECTIONS*/
 
 /*#region tag styles*/
+
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
 
 html {
     height: 100%;
@@ -52,15 +58,11 @@ body {
     min-width: 600px;
 
     .learning-path-title-panel {
-        -moz-box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
         float: left;
         padding: 30px;
         width: 500px;
 
         .logo {
-            display: inline-block;
             width: 180px;
             height: 32px;
             background: @logo no-repeat;
@@ -68,7 +70,7 @@ body {
 
         .learning-path {
             color: @title-panel-caption-color;
-            font-family: 'roboto-regular';
+            font-family: 'Roboto-Regular';
             font-size: 18px;
             line-height: 28px;
             margin-top: 70px;
@@ -77,7 +79,7 @@ body {
         .learning-path-title {
             border-bottom: 1px solid @title-underline-color;
             color: @title-color;
-            font-family: 'robotoSlab-regular';
+            font-family: 'RobotoSlab-Regular';
             font-size: 30px;
             line-height: 1.5;
             padding-bottom: 18px;
@@ -91,19 +93,17 @@ body {
     .learning-path-content {
         background: @content-background repeat;
         border-left: 1px solid @content-left-border-color;
-        -moz-box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
         height: 100%;
         overflow: auto;
-        padding: 30px 30px 0 100px;
+        padding: 30px 30px 30px 100px;
 
         .courses-title {
             color: @content-title-color;
-            font-family: 'roboto-regular';
+            font-family: 'Roboto-Regular';
             font-size: 28px;
             font-style: italic;
-            margin-bottom: 25px;
+            font-weight: normal;
+            margin: 0 0 25px 0;
         }
 
         .courses-list {
@@ -115,10 +115,8 @@ body {
             li {
                 position: relative;
                 background-color: @course-item-background-color;
-                -moz-border-radius: 10px;
                 -webkit-border-radius: 10px;
                 border-radius: 10px;
-                margin-bottom: 33px;
                 -webkit-box-shadow: 0 -5px 20px 1px @course-item-top-shadow-color, 0 3px 0 0 @course-item-bottom-shadow-color;
                 -moz-box-shadow: 0 -5px 20px 1px @course-item-top-shadow-color, 0 3px 0 0 @course-item-bottom-shadow-color;
                 box-shadow: 0 -5px 20px 1px @course-item-top-shadow-color, 0 3px 0 0 @course-item-bottom-shadow-color;
@@ -127,20 +125,23 @@ body {
                 box-sizing: border-box;
                 padding: 15px 20px 45px 70px;
 
-                &.linked:before {
-                    background: @course-item-linked-image no-repeat;
-                    background-size: cover;
-                    content: "";
-                    display: inline-block;
-                    width: 29px;
-                    height: 100%;
-                    position: absolute;
-                    left: -75px;
-                    top: 80px;
+                &.linked {
+                    margin-bottom: 33px;
+
+                    &:before {
+                        background: @course-item-linked-image no-repeat;
+                        background-size: cover;
+                        content: "";
+                        display: inline-block;
+                        width: 29px;
+                        height: 100%;
+                        position: absolute;
+                        left: -75px;
+                        top: 80px;
+                    }
                 }
 
                 .course-image {
-                    display: inline-block;
                     position: absolute;
                     left: -53px;
                     top: 10px;
@@ -154,7 +155,7 @@ body {
                     table-layout: fixed;
                     border-bottom: 1px solid @course-title-underline-color;
                     color: @course-title-color;
-                    font-family: 'roboto-regular';
+                    font-family: 'Roboto-Regular';
                     font-size: 18px;
                     height: 75px;
                     line-height: 30px;
@@ -184,11 +185,10 @@ body {
                     right: 20px;
                     bottom: 8px;
                     border: 1px solid @course-item-bottom-shadow-color;
-                    -moz-border-radius: 5px;
                     -webkit-border-radius: 5px;
                     border-radius: 5px;
                     color: @course-item-bottom-shadow-color;
-                    font-family: 'roboto-regular';
+                    font-family: 'Roboto-Regular';
                     font-size: 12px;
                     padding: 5px 15px;
                     text-decoration: none;
