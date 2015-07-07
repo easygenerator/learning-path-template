@@ -37,6 +37,9 @@ gulp.task('build', ['clean'], function () {
         .pipe(addBuildVersion())
         .pipe(gulp.dest(output));
 
+    gulp.src('favicon.ico')
+        .pipe(gulp.dest(output));
+
     return gulp.src('css/font/**')
        .pipe(gulp.dest(output + '/css/font'));
 });
