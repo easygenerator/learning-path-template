@@ -40,6 +40,9 @@ gulp.task('build', ['clean'], function () {
     gulp.src(['favicon.ico', 'readme.txt'])
         .pipe(gulp.dest(output));
 
+    gulp.src('img/**')
+       .pipe(gulp.dest(output + '/img'));
+
     return gulp.src('css/font/**')
        .pipe(gulp.dest(output + '/css/font'));
 });

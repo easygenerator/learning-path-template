@@ -27,7 +27,9 @@
                 <!-- ko foreach: courses -->
                 <li>
                     <a class="course-item" target="_blank" data-bind="attr: { href: link}, css: { linked: $index() < $parent.courses.length - 1}">
-                        <span class="course-image"></span>
+                        <span class="course-image">
+                            <img data-bind="attr: {src: thumbnailUrl}" />
+                        </span>
                         <span class="course-title" data-bind="css: { 'middle': title.length > 60 && title.length <= 140, 'long': title.length > 140}">
                             <span class="course-title-text" data-bind="text: title"></span>
                         </span>
