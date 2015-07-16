@@ -54,6 +54,10 @@ gulp.task('styles', function () {
         .pipe(gulp.dest(config.less.dest));
 });
 
+gulp.task('watch', function () {
+    gulp.watch('./css/*.less', ['styles']);
+});
+
 gulp.task('clean', function (cb) {
     del([output], cb);
 });

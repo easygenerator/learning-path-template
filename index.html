@@ -10,6 +10,9 @@
     <script src="js/vendor/knockout/dist/knockout.js"></script>
     <script src="js/vendor/requirejs/require.js"></script>
     <!-- endbuild -->
+    <!-- build:js js/components.min.js -->
+    <script src="js/bindingHandlers/circleProgressBindingHandler.js"></script>
+    <!-- endbuild -->
     <!-- build:js js/app.min.js -->
     <script src="js/app/app.js"></script>
     <!-- endbuild -->
@@ -43,13 +46,21 @@
                 <!-- ko foreach: learningPath.courses -->
                 <li>
                     <a class="course" target="_blank" data-bind="attr: { href: link}, css: { linked: $index() < $parent.learningPath.courses.length - 1}">
-                        <span class="course-image">
-                            <img data-bind="attr: {src: thumbnailUrl}" />
-                        </span>
-                        <span class="course-title" data-bind="css: { 'middle': title.length > 60 && title.length <= 140, 'long': title.length > 140}">
+                        <div class="course-progress">
+                            <div class="circle-progress-bar" data-bind="css: { complete: isComplete }, circleProgress: score">
+                                <div class="course-image-wrapper">
+                                    <img class="course-image" data-bind="attr: {src: thumbnailUrl}" />
+                                </div>
+                                <div class="circle-progress-bar-text" data-bind="text:score+'%'"></div>
+                            </div>
+                        </div>
+                        <div class="course-title" data-bind="css: { 'middle': title.length > 60 && title.length <= 140, 'long': title.length > 140}">
                             <span class="course-title-text" data-bind="text: title"></span>
-                        </span>
-                        <span class="start-course-link">Start course</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="course-status" data-bind="text: isComplete? 'Complete' : 'Failed', css: { complete: isComplete }"></div>
+                            <div class="start-course-link">Start course</div>
+                        </div>
                     </a>
                 </li>
                 <!-- /ko -->

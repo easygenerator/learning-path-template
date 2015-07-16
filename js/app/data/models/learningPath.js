@@ -36,7 +36,7 @@
         }
 
         function setCourseState(course, score, isComplete) {
-            course.progress = score;
+            course.score = score;
             course.isComplete = isComplete;
         }
     };
