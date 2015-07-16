@@ -4,12 +4,14 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     useref = require('gulp-useref'),
     eventStream = require('event-stream'),
+    amdOptimize = require('amd-optimize'),
+    concat = require('gulp-concat'),
     gulpif = require('gulp-if'),
     output = ".output",
     buildVersion = +new Date();
-    $ = require('gulp-load-plugins')({
-        lazy: true
-    });
+$ = require('gulp-load-plugins')({
+    lazy: true
+});
 
 var config = {
     less: {
@@ -67,6 +69,13 @@ gulp.task('build', ['clean', 'styles'], function () {
         .pipe(useref())
         .pipe(addBuildVersion())
         .pipe(gulp.dest(output));
+
+    gulp.src('js/app/**')
+        .pipe(amdOptimize('app'))
+        .pipe(concat('app.min.js'))
+        .pipe(uglify())
+        .pipe(addBuildVersion())
+        .pipe(gulp.dest(output + '/js'));
 
     gulp.src(['favicon.ico', 'readme.txt'])
         .pipe(gulp.dest(output));

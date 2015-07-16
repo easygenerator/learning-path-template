@@ -8,9 +8,10 @@
     <!-- build:js js/vendor.min.js -->
     <script src="js/vendor/jquery/dist/jquery.js"></script>
     <script src="js/vendor/knockout/dist/knockout.js"></script>
+    <script src="js/vendor/requirejs/require.js"></script>
     <!-- endbuild -->
-    <!-- build:js js/main.min.js -->
-    <script data-main="js/app" src="js/vendor/requirejs/require.js"></script>
+    <!-- build:js js/app.min.js -->
+    <script src="js/app/app.js"></script>
     <!-- endbuild -->
 </head>
 <body>
@@ -21,7 +22,6 @@
                 <div class="logo"></div>
                 <div class="learning-path">Learning path:</div>
                 <div class="learning-path-title" data-bind="text: learningPath.title, css: { 'long': learningPath.title.length > 60 }"></div>
-
                 <div class="learning-path-progress">
                     <div class="learning-path-progress-bar-wrapper">
                         <div class="learning-path-progress-bar">
