@@ -1,7 +1,5 @@
-﻿define(['data/models/learningPath', 'data/courseMapper'], function (LearningPath, courseMapper) {
+﻿define(['constants', 'data/models/learningPath', 'data/courseMapper'], function (constants, LearningPath, courseMapper) {
     "use strict";
-
-    var dataUrl = 'data/data.json';
 
     var self = {
         init: init,
@@ -11,9 +9,9 @@
     return self;
 
     function init() {
-        return $.getJSON(dataUrl).then(function(data) {
+        return $.getJSON(constants.learningPath.dataUrl).then(function (data) {
             var mapPromises = [];
-            data.courses.forEach(function(item) {
+            data.courses.forEach(function (item) {
                 mapPromises.push(courseMapper.map(item));
             });
 

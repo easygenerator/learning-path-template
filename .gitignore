@@ -4,3 +4,4 @@
 Web.config
 /*.suo
 /css/*.css
+/js/vendor

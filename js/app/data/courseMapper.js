@@ -1,8 +1,5 @@
-﻿define(['data/models/course'], function (Course) {
+﻿define(['constants', 'data/models/course', 'data/courseProgressProvider'], function (constants, Course, courseProgressProvider) {
     "use strict";
-
-    var manifestUrl = '/manifest.json',
-    defaultCourseThumbnailUrl = 'img/default.png';
 
     return {
         map: map
@@ -12,23 +9,39 @@
         var defer = $.Deferred();
 
         var viewModel = new Course(course.title, course.link);
-        if (course.link) {
-            getThumbnailUrl(course.link).then(function (thumbnailUrl) {
-                viewModel.thumbnailUrl = thumbnailUrl;
+
+        $.getJSON(course.link + constants.course.contentDataUrl).then(function (courseData) {
+            viewModel.id = courseData ? courseData.id : undefined;
+            viewModel.createdOn = courseData ? courseData.createdOn : undefined;
+
+            setCourseProgress(course);
+
+            if (course.link) {
+                getThumbnailUrl(course.link).then(function (thumbnailUrl) {
+                    viewModel.thumbnailUrl = thumbnailUrl;
+                    defer.resolve(viewModel);
+                });
+            } else {
                 defer.resolve(viewModel);
-            });
-        } else {
-            defer.resolve(viewModel);
-        }
+            }
+        });
 
         return defer.promise();
     }
 
     function getThumbnailUrl(link) {
-        return $.getJSON(link + manifestUrl).then(function (manifest) {
-            return manifest.thumbnail ? link + '/' + manifest.thumbnail : defaultCourseThumbnailUrl;
+        return $.getJSON(link + constants.course.manifestUrl).then(function (manifest) {
+            return manifest.thumbnail ? link + '/' + manifest.thumbnail : constants.course.defaultCourseThumbnailUrl;
         }).fail(function () {
-            return defaultCourseThumbnailUrl;
+            return constants.course.defaultCourseThumbnailUrl;
         });
+    }
+
+    function setCourseProgress(course) {
+        var progress = courseProgressProvider.getProgress(course.id, course.createdOn);
+        if (!progress)
+            return;
+
+
     }
 });

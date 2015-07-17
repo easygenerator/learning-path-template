@@ -1,3 +1,5 @@
+/// <vs SolutionOpened='watch' />
+
 var gulp = require('gulp'),
     del = require('del'),
     minifyCss = require('gulp-minify-css'),

@@ -1,16 +1,21 @@
-﻿define(['viewModels/course'], function (Course) {
+﻿define(['viewModels/course', 'constants', 'eventManager', 'data/dataContext'], function (Course, constants, eventManager, dataContext) {
     "use strict";
 
-    var ctor = function (learningPath) {
+    var ctor = function () {
         var viewModel = {
             courses: [],
-            title: learningPath.title,
-            score: learningPath.getScore(),
-            completedCoursesCount: learningPath.getCompletedCoursesCount()
+            title: dataContext.learningPath.title,
+            score: ko.observable(dataContext.learningPath.getScore()),
+            completedCoursesCount: ko.observable(dataContext.learningPath.getCompletedCoursesCount())
         };
 
-        learningPath.courses.forEach(function (course) {
+        dataContext.learningPath.courses.forEach(function (course) {
             viewModel.courses.push(new Course(course));
+        });
+
+        eventManager.on(constants.events.course.resultChanged, function () {
+            viewModel.score(dataContext.learningPath.getScore());
+            viewModel.completedCoursesCount(dataContext.learningPath.getCompletedCoursesCount());
         });
 
         return viewModel;

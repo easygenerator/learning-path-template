@@ -33,6 +33,15 @@ body {
     margin: 0;
     padding: 0;
     width: 100%;
+    background: @content-background repeat;
+}
+
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -16px;
+    margin-left: -16px;
 }
 
 a:focus {
@@ -48,11 +57,16 @@ a:focus {
 }
 
 .learning-path-container {
-    background-color: @title-background-color;
+    display: none;
     height: 100%;
     min-width: 600px;
 
+    &.shown {
+        display: block;
+    }
+
     .learning-path-title-panel {
+        background-color: @title-background-color;
         float: left;
         padding: 30px;
         width: 500px;
@@ -147,7 +161,6 @@ a:focus {
     }
 
     .learning-path-content {
-        background: @content-background repeat;
         border-left: 1px solid @content-left-border-color;
         height: 100%;
         overflow: auto;
