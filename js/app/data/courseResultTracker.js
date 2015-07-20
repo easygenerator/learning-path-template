@@ -31,8 +31,7 @@
                 return;
 
             var course = courses[0];
-            course.score = newValue.score;
-            course.isComplete = newValue.isComplete;
+            course.setResult(newValue);
             eventManager.trigger(constants.events.course.resultChanged, course);
         });
     }

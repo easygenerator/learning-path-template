@@ -1,28 +1,28 @@
-﻿define(['constants', 'data/models/course', 'data/courseProgressProvider'], function (constants, Course, courseProgressProvider) {
+﻿define(['constants', 'data/models/course', 'data/courseResultProvider'], function (constants, Course, courseResultProvider) {
     "use strict";
 
     return {
         map: map
     };
 
-    function map(course) {
+    function map(title, link) {
         var defer = $.Deferred();
 
-        var viewModel = new Course(course.title, course.link);
+        var course = new Course(title, link);
 
         $.getJSON(course.link + constants.course.contentDataUrl).then(function (courseData) {
-            viewModel.id = courseData ? courseData.id : undefined;
-            viewModel.createdOn = courseData ? courseData.createdOn : undefined;
+            course.id = courseData ? courseData.id : undefined;
+            course.createdOn = courseData ? courseData.createdOn : undefined;
 
-            setCourseProgress(course);
+            setCourseResult(course);
 
             if (course.link) {
                 getThumbnailUrl(course.link).then(function (thumbnailUrl) {
-                    viewModel.thumbnailUrl = thumbnailUrl;
-                    defer.resolve(viewModel);
+                    course.thumbnailUrl = thumbnailUrl;
+                    defer.resolve(course);
                 });
             } else {
-                defer.resolve(viewModel);
+                defer.resolve(course);
             }
         });
 
@@ -37,11 +37,11 @@
         });
     }
 
-    function setCourseProgress(course) {
-        var progress = courseProgressProvider.getProgress(course.id, course.createdOn);
-        if (!progress)
+    function setCourseResult(course) {
+        var result = courseResultProvider.getResult(course.id, course.createdOn);
+        if (!result)
             return;
 
-
+        course.setResult(result);
     }
 });

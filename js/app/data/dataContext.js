@@ -12,7 +12,7 @@
         return $.getJSON(constants.learningPath.dataUrl).then(function (data) {
             var mapPromises = [];
             data.courses.forEach(function (item) {
-                mapPromises.push(courseMapper.map(item));
+                mapPromises.push(courseMapper.map(item.title, item.link));
             });
 
             return $.when.apply($, mapPromises).then(function () {

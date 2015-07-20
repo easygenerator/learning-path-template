@@ -9,11 +9,6 @@
             getCompletedCoursesCount: getCompletedCoursesCount
         };
 
-        //test data
-        setCourseState(that.courses[0], 20, false);
-        setCourseState(that.courses[1], 60, true);
-        setCourseState(that.courses[2], 100, true);
-
         return that;
 
         function getScore() {
@@ -33,11 +28,6 @@
             });
 
             return completedCoursesCount;
-        }
-
-        function setCourseState(course, score, isComplete) {
-            course.score = score;
-            course.isComplete = isComplete;
         }
     };
 

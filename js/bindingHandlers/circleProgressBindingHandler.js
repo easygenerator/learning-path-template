@@ -5,13 +5,11 @@
         $canvas.appendTo($element);
     },
     update: function (element, valueAccessor) {
-        var value = ko.unwrap(valueAccessor()) || 0,
-            $element = $(element),
+        var score = ko.unwrap(valueAccessor().score) || 0,
+            isComplete = ko.unwrap(valueAccessor().isComplete),
             $canvas = $(element).children('canvas')[0],
             ctx = $canvas.getContext('2d'),
-            percentage = (value / 100) * 2 - 0.5;
-
-        var isComplete = $element.hasClass('complete');
+            percentage = (score / 100) * 2 - 0.5;
 
         var progressBarColor = isComplete ? '#49b8e7' : '#f16162';
         ctx.lineWidth = 4;

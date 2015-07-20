@@ -2,11 +2,24 @@
     "use strict";
 
     var ctor = function (title, link) {
-        this.title = title;
-        this.link = link;
-        this.thumbnailUrl = '';
-        this.isComplete = false;
-        this.score = 0;
+        var that = {
+            title: title,
+            link: link,
+            thumbnailUrl: '',
+            isComplete: false,
+            score: 0,
+            setResult: setResult
+        };
+
+        return that;
+
+        function setResult(result) {
+            if (!result)
+                return;
+
+            that.score = result.score;
+            that.isComplete = result.isComplete;
+        }
     };
 
     return ctor;

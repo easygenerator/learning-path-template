@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>easygenerator</title>
@@ -53,11 +53,11 @@
                 <li>
                     <a class="course" target="_blank" data-bind="attr: { href: link}, css: { linked: $index() < $parent.learningPath.courses.length - 1}">
                         <div class="course-progress">
-                            <div class="circle-progress-bar" data-bind="css: { complete: isComplete() }, circleProgress: score()">
+                            <div class="circle-progress-bar" data-bind="circleProgress: { score: score(), isComplete: isComplete()}">
                                 <div class="course-image-wrapper">
                                     <img class="course-image" data-bind="attr: {src: thumbnailUrl}" />
                                 </div>
-                                <div class="circle-progress-bar-text" data-bind="text:score()+'%'"></div>
+                                <div class="circle-progress-bar-text" data-bind="text: score() + '%'"></div>
                             </div>
                         </div>
                         <div class="course-title" data-bind="css: { 'middle': title.length > 60 && title.length <= 140, 'long': title.length > 140}">
