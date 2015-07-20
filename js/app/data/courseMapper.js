@@ -6,42 +6,39 @@
     };
 
     function map(title, link) {
-        var defer = $.Deferred();
-
         var course = new Course(title, link);
 
-        $.getJSON(course.link + constants.course.contentDataUrl).then(function (courseData) {
+        return $.getJSON(course.link + constants.course.contentDataUrl).then(function (courseData) {
             course.id = courseData ? courseData.id : undefined;
             course.createdOn = courseData ? courseData.createdOn : undefined;
 
-            setCourseResult(course);
+            setCourseResult();
 
             if (course.link) {
-                getThumbnailUrl(course.link).then(function (thumbnailUrl) {
+                return getThumbnailUrl().then(function (thumbnailUrl) {
                     course.thumbnailUrl = thumbnailUrl;
-                    defer.resolve(course);
+                    return course;
                 });
             } else {
-                defer.resolve(course);
+                return course;
             }
         });
 
-        return defer.promise();
-    }
+        function setCourseResult() {
+            var result = courseResultProvider.getResult(course.id, course.createdOn);
+            if (!result)
+                return;
 
-    function getThumbnailUrl(link) {
-        return $.getJSON(link + constants.course.manifestUrl).then(function (manifest) {
-            return manifest.thumbnail ? link + '/' + manifest.thumbnail : constants.course.defaultCourseThumbnailUrl;
-        }).fail(function () {
-            return constants.course.defaultCourseThumbnailUrl;
-        });
-    }
+            course.score = result.score;
+            course.isComplete = result.isComplete;
+        }
 
-    function setCourseResult(course) {
-        var result = courseResultProvider.getResult(course.id, course.createdOn);
-        if (!result)
-            return;
-
-        course.setResult(result);
+        function getThumbnailUrl() {
+            return $.getJSON(link + constants.course.manifestUrl).then(function (manifest) {
+                return manifest.thumbnail ? link + '/' + manifest.thumbnail : constants.course.defaultCourseThumbnailUrl;
+            }).fail(function () {
+                return constants.course.defaultCourseThumbnailUrl;
+            });
+        }
     }
 });

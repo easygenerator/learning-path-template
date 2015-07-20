@@ -1,25 +1,28 @@
-﻿define(['viewModels/course', 'constants', 'eventManager', 'data/dataContext'], function (Course, constants, eventManager, dataContext) {
+﻿define(['viewModels/course', 'constants', 'data/dataContext', 'durandal/app'], function (Course, constants, dataContext, app) {
     "use strict";
 
-    var ctor = function () {
-        var viewModel = {
-            courses: [],
-            title: dataContext.learningPath.title,
-            score: ko.observable(dataContext.learningPath.getScore()),
-            completedCoursesCount: ko.observable(dataContext.learningPath.getCompletedCoursesCount())
-        };
+    var viewModel = {
+        courses: [],
+        title: '',
+        score: ko.observable(0),
+        completedCoursesCount: ko.observable(0),
+        activate: activate
+    };
+
+    return viewModel;
+
+    function activate() {
+        viewModel.title = dataContext.learningPath.title;
+        viewModel.score(dataContext.learningPath.getScore());
+        viewModel.completedCoursesCount(dataContext.learningPath.getCompletedCoursesCount());
 
         dataContext.learningPath.courses.forEach(function (course) {
             viewModel.courses.push(new Course(course));
         });
 
-        eventManager.on(constants.events.course.resultChanged, function () {
+        app.on(constants.events.course.resultChanged, function () {
             viewModel.score(dataContext.learningPath.getScore());
             viewModel.completedCoursesCount(dataContext.learningPath.getCompletedCoursesCount());
         });
-
-        return viewModel;
-    };
-
-    return ctor;
+    }
 });

@@ -1,4 +1,4 @@
-﻿define(['constants', 'data/dataContext', 'eventManager'], function (constants, dataContext, eventManager) {
+﻿define(['constants', 'data/dataContext', 'durandal/app'], function (constants, dataContext, app) {
     "use strict";
 
     return {
@@ -7,32 +7,32 @@
 
     function startTracking() {
         $(window).bind('storage', function (event) {
-            var e = event.originalEvent;
-            if (!e || !e.key || !e.newValue)
+            if (!event.originalEvent)
                 return;
 
-            var newValue;
+            var key = event.originalEvent.key,
+                value = event.originalEvent.newValue,
+                result;
+
             try {
-                newValue = JSON.parse(e.newValue);
+                result = JSON.parse(value);
             } catch (e) {
                 console.log('Unable to receive course result from localStorage');
                 return;
             }
 
-            if (!newValue)
+            if (!value)
                 return;
 
             var courses = dataContext.learningPath.courses.filter(function (item) {
                 var expectedKey = constants.course.resultStorageKey + item.id + item.createdOn;
-                return e.key === expectedKey;
+                return key === expectedKey;
             });
 
             if (courses.length < 1)
                 return;
 
-            var course = courses[0];
-            course.setResult(newValue);
-            eventManager.trigger(constants.events.course.resultChanged, course);
+            app.trigger(constants.events.course.resultStorageEntryUpdated, courses[0].id, result);
         });
     }
 });

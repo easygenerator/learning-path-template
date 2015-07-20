@@ -18,78 +18,23 @@
     <!-- endbuild -->
 </head>
 <body>
-    <!-- ko if: isLoading -->
-    <div class="loader-wrapper">
+    <div id="applicationHost" class="application-wrapper">
         <img class="loader" src="img/loader.gif" alt="" />
     </div>
-    <!-- /ko -->
-    <!-- ko ifnot: isLoading -->
-    <div class="learning-path-container clearfix" data-bind="css: { shown: !isLoading() }">
-        <!-- ko ifnot: isError -->
-        <div class="learning-path-title-panel">
-            <div class="learning-path-title-panel-content">
-                <div class="logo"></div>
-                <div class="learning-path">Learning path:</div>
-                <div class="learning-path-title" data-bind="text: learningPath.title, css: { 'long': learningPath.title.length > 60 }"></div>
-                <div class="learning-path-progress">
-                    <div class="learning-path-progress-bar-wrapper">
-                        <div class="learning-path-progress-bar">
-                            <div class="progress-bar">
-                                <div class="progress-bar-value" data-bind="style: { width: learningPath.score() + '%' }"></div>
-                            </div>
-                        </div>
-                        <div class="score-text-wrapper" data-bind="text: learningPath.score() + '%'"></div>
-                    </div>
-                    <div class="completed-courses">
-                        (<span data-bind="text: learningPath.completedCoursesCount"></span>&nbsp;of&nbsp;<span data-bind="text: learningPath.courses.length"></span>&nbsp;courses completed)
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="learning-path-content">
-            <h1 class="courses-title">Courses</h1>
-            <ul class="courses-list">
-                <!-- ko foreach: learningPath.courses -->
-                <li>
-                    <a class="course" target="_blank" data-bind="attr: { href: link}, css: { linked: $index() < $parent.learningPath.courses.length - 1}">
-                        <div class="course-progress">
-                            <div class="circle-progress-bar" data-bind="circleProgress: { score: score(), isComplete: isComplete()}">
-                                <div class="course-image-wrapper">
-                                    <img class="course-image" data-bind="attr: {src: thumbnailUrl}" />
-                                </div>
-                                <div class="circle-progress-bar-text" data-bind="text: score() + '%'"></div>
-                            </div>
-                        </div>
-                        <div class="course-title" data-bind="css: { 'middle': title.length > 60 && title.length <= 140, 'long': title.length > 140}">
-                            <span class="course-title-text" data-bind="text: title"></span>
-                        </div>
-                        <div class="course-footer">
-                            <div class="course-status" data-bind="text: isComplete()? 'Complete' : 'Failed', css: { complete: isComplete }"></div>
-                            <div class="start-course-link">Start course</div>
-                        </div>
-                    </a>
-                </li>
-                <!-- /ko -->
-            </ul>
-        </div>
-        <!-- /ko -->
-        <!-- ko if: isError -->
-        <div class="error">
-            Error loading learning path...
-        </div>
-        <!-- /ko -->
-    </div>
-    <!-- /ko -->
+    <script type="text/javascript">
+        var require = {
+            baseUrl: 'js/app',
+            deps: ['main'],
+            urlArgs: 'v=buildVersion'
+        };
+    </script>
     <!-- build:js js/vendor.min.js -->
-    <script src="js/vendor/jquery/dist/jquery.js"></script>
-    <script src="js/vendor/knockout/dist/knockout.js"></script>
+    <script src="js/vendor/jquery/jquery.js"></script>
+    <script src="js/vendor/knockout.js/knockout.js"></script>
     <script src="js/vendor/requirejs/require.js"></script>
     <!-- endbuild -->
     <!-- build:js js/components.min.js -->
     <script src="js/bindingHandlers/circleProgressBindingHandler.js"></script>
-    <!-- endbuild -->
-    <!-- build:js js/app.min.js -->
-    <script src="js/app/app.js"></script>
     <!-- endbuild -->
 </body>
 </html>

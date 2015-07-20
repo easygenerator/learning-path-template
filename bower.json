@@ -1,25 +1,23 @@
 {
-    "name": "learning-path-template",
-    "version": "0.0.1",
-    "homepage": "https://github.com/easygenerator/learning-path-template",
-    "authors": [
-        "easygenerator"
-    ],
-    "moduleType": [
-        "globals"
-    ],
-    "license": "MIT",
-    "private": true,
-    "ignore": [
-        "**/.*",
-        "node_modules",
-        "bower_components",
-        "test",
-        "tests"
-    ],
-    "dependencies": {
-        "jquery": "~2.1.1",
-        "knockout": "~3.1.0",
-        "requirejs": "*"
-    }
+  "name": "learning-path-template",
+  "version": "0.0.1",
+  "homepage": "https://github.com/easygenerator/learning-path-template",
+  "authors": [
+    "easygenerator"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "durandal": "~2.1.0"
+  }
 }

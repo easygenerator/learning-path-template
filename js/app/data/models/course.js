@@ -1,4 +1,4 @@
-﻿define([], function () {
+﻿define(['durandal/app', 'constants'], function (app, constants) {
     "use strict";
 
     var ctor = function (title, link) {
@@ -7,19 +7,19 @@
             link: link,
             thumbnailUrl: '',
             isComplete: false,
-            score: 0,
-            setResult: setResult
+            score: 0
         };
 
-        return that;
-
-        function setResult(result) {
-            if (!result)
+        app.on(constants.events.course.resultStorageEntryUpdated, function (courseId, result) {
+            if (courseId != that.id)
                 return;
 
             that.score = result.score;
             that.isComplete = result.isComplete;
-        }
+            app.trigger(constants.events.course.resultChanged, that);
+        });
+
+        return that;
     };
 
     return ctor;

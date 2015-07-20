@@ -1,0 +1,10 @@
+﻿<div class="learning-path-wrapper clearfix">
+    <!-- ko ifnot: isError -->
+    <!-- ko compose: 'viewmodels/learningPath' --><!-- /ko -->
+    <!-- /ko -->
+    <!-- ko if: isError -->
+    <div class="error">
+        Error loading learning path...
+    </div>
+    <!-- /ko -->
+</div>

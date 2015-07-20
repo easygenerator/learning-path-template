@@ -11,7 +11,8 @@
         },
         events: {
             course: {
-                resultChanged: 'course:resultChanged'
+                resultChanged: 'course:resultChanged',
+                resultStorageEntryUpdated: 'course:resultStorageEntryUpdated'
             }
         }
     };

@@ -1,4 +1,4 @@
-﻿define(['constants', 'eventManager'], function (constants, eventManager) {
+﻿define(['constants', 'durandal/app'], function (constants, app) {
     "use strict";
 
     var ctor = function (course) {
@@ -11,13 +11,12 @@
             score: ko.observable(course.score)
         };
 
-        eventManager.on(constants.events.course.resultChanged, function (event) {
-            var updatedCourse = event.value;
-            if (!updatedCourse || updatedCourse.id != viewModel.id)
+        app.on(constants.events.course.resultChanged, function (courseData) {
+            if (viewModel.id != courseData.id)
                 return;
 
-            viewModel.score(updatedCourse.score);
-            viewModel.isComplete(updatedCourse.isComplete);
+            viewModel.score(courseData.score);
+            viewModel.isComplete(courseData.isComplete);
         });
 
         return viewModel;

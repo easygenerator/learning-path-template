@@ -10,10 +10,11 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     gulpif = require('gulp-if'),
     output = ".output",
-    buildVersion = +new Date();
-$ = require('gulp-load-plugins')({
-    lazy: true
-});
+    buildVersion = +new Date(),
+    durandal = require('gulp-durandal'),
+    $ = require('gulp-load-plugins')({
+        lazy: true
+    });
 
 var config = {
     less: {
@@ -76,12 +77,20 @@ gulp.task('build', ['clean', 'styles'], function () {
         .pipe(addBuildVersion())
         .pipe(gulp.dest(output));
 
-    gulp.src('js/app/**')
-        .pipe(amdOptimize('app'))
-        .pipe(concat('app.min.js'))
-        .pipe(uglify())
-        .pipe(addBuildVersion())
-        .pipe(gulp.dest(output + '/js'));
+    //gulp.src('js/app/**')
+    //    .pipe(amdOptimize('app'))
+    //    .pipe(concat('app.min.js'))
+    //    .pipe(uglify())
+    //    .pipe(addBuildVersion())
+    //    .pipe(gulp.dest(output + '/js'));
+
+    durandal(
+      {
+          baseDir: 'js/app',
+          minify: true
+      })
+     .pipe(addBuildVersion())
+     .pipe(gulp.dest(output + '/js/app'));
 
     gulp.src(['favicon.ico', 'readme.txt'])
         .pipe(gulp.dest(output));

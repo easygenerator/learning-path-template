@@ -9,7 +9,7 @@
 @title-panel-caption-color: #e6e6e6;
 @title-color: #fff;
 @title-underline-color: #39444e;
-@error-color: #fff;
+@error-color: #39444e;
 
 @progress-bar-height: 8px;
 @progress-bar-background-color: #dadada;
@@ -56,130 +56,138 @@ a:focus {
     clear: both;
 }
 
-.learning-path-container {
-    display: none;
+.application-wrapper {
     height: 100%;
-    min-width: 600px;
+}
+
+.learning-path-wrapper {
+    height: 100%;
+
 
     &.shown {
         display: block;
     }
 
-    .learning-path-title-panel {
-        background-color: @title-background-color;
-        float: left;
-        padding: 30px;
-        width: 500px;
-        overflow: auto;
+    .learning-path-container {
         height: 100%;
+        min-width: 600px;
 
-        .learning-path-title-panel-content {
-            border-bottom: 1px solid @title-underline-color;
-            padding-bottom: 20px;
+        .learning-path-title-panel {
+            background-color: @title-background-color;
+            float: left;
+            padding: 30px;
+            width: 500px;
+            overflow: auto;
+            height: 100%;
 
-            .logo {
-                width: 180px;
-                height: 32px;
-                background: @logo no-repeat;
-            }
+            .learning-path-title-panel-content {
+                border-bottom: 1px solid @title-underline-color;
+                padding-bottom: 20px;
 
-            .learning-path {
-                color: @title-panel-caption-color;
-                font-family: 'Roboto-Regular';
-                font-size: 18px;
-                line-height: 28px;
-                margin-top: 70px;
-            }
-
-            .learning-path-title {
-                color: @title-color;
-                font-family: 'RobotoSlab-Regular';
-                font-size: 30px;
-                line-height: 1.5;
-                padding-bottom: 10px;
-                word-wrap: break-word;
-
-                &.long {
-                    font-size: 24px;
+                .logo {
+                    width: 180px;
+                    height: 32px;
+                    background: @logo no-repeat;
                 }
-            }
 
-            .learning-path-progress {
+                .learning-path {
+                    color: @title-panel-caption-color;
+                    font-family: 'Roboto-Regular';
+                    font-size: 18px;
+                    line-height: 28px;
+                    margin-top: 70px;
+                }
 
-                .learning-path-progress-bar-wrapper {
-                    display: table;
+                .learning-path-title {
+                    color: @title-color;
+                    font-family: 'RobotoSlab-Regular';
+                    font-size: 30px;
+                    line-height: 1.5;
+                    padding-bottom: 10px;
+                    word-wrap: break-word;
 
-                    .learning-path-progress-bar {
-                        display: table-cell;
-                        vertical-align: middle;
-                        width: 280px;
+                    &.long {
+                        font-size: 24px;
+                    }
+                }
 
-                        .draw-shadow() {
-                            box-shadow: inset 0px -1px 1px 0px rgba(0, 0, 0, 0.3);
-                        }
+                .learning-path-progress {
 
-                        .progress-bar {
-                            overflow: hidden;
-                            border-radius: 7px;
-                            background-color: @progress-bar-background-color;
-                            .draw-shadow();
-                        }
+                    .learning-path-progress-bar-wrapper {
+                        display: table;
 
-                        .progress-bar-value {
-                            user-select: none;
-                            min-height: @progress-bar-height;
-                            background-color: @progress-bar-value-background-color;
-                            text-align: center;
-                            font-weight: bold;
-                            cursor: default;
-                            border-top-left-radius: 7px;
-                            border-bottom-left-radius: 7px;
-                            .draw-shadow();
+                        .learning-path-progress-bar {
+                            display: table-cell;
+                            vertical-align: middle;
+                            width: 280px;
 
-                            &:empty {
-                                content: " ";
+                            .draw-shadow() {
+                                box-shadow: inset 0px -1px 1px 0px rgba(0, 0, 0, 0.3);
+                            }
+
+                            .progress-bar {
+                                overflow: hidden;
+                                border-radius: 7px;
+                                background-color: @progress-bar-background-color;
+                                .draw-shadow();
+                            }
+
+                            .progress-bar-value {
+                                user-select: none;
+                                min-height: @progress-bar-height;
+                                background-color: @progress-bar-value-background-color;
+                                text-align: center;
+                                font-weight: bold;
+                                cursor: default;
+                                border-top-left-radius: 7px;
+                                border-bottom-left-radius: 7px;
+                                .draw-shadow();
+
+                                &:empty {
+                                    content: " ";
+                                }
                             }
                         }
+
+                        .score-text-wrapper {
+                            display: table-cell;
+                            width: 50px;
+                            text-align: center;
+                            font: 20px 'RobotoSlab-Light';
+                            color: @progress-bar-text-color;
+                        }
                     }
 
-                    .score-text-wrapper {
-                        display: table-cell;
-                        width: 50px;
-                        text-align: center;
-                        font: 20px 'RobotoSlab-Light';
-                        color: @progress-bar-text-color;
+                    .completed-courses {
+                        margin-top: 5px;
+                        color: @progress-bar-completed-courses-color;
+                        font: 13px 'Myriad';
                     }
-                }
-
-                .completed-courses {
-                    margin-top: 5px;
-                    color: @progress-bar-completed-courses-color;
-                    font: 13px 'Myriad';
                 }
             }
         }
-    }
 
-    .learning-path-content {
-        border-left: 1px solid @content-left-border-color;
-        height: 100%;
-        overflow: auto;
-        padding: 30px 30px 0 100px;
+        .learning-path-content {
+            border-left: 1px solid @content-left-border-color;
+            height: 100%;
+            overflow: auto;
+            padding: 30px 30px 0 100px;
 
-        .courses-title {
-            color: @content-title-color;
-            font-family: 'Roboto-Regular';
-            font-size: 28px;
-            font-style: italic;
-            font-weight: normal;
-            margin: 0 0 25px 0;
-        }
+            .courses-title {
+                color: @content-title-color;
+                font-family: 'Roboto-Regular';
+                font-size: 28px;
+                font-style: italic;
+                font-weight: normal;
+                margin: 0 0 25px 0;
+            }
 
-        .courses-list {
-            list-style: none;
-            padding: 0 0 0 75px;
-            margin: 0;
-            max-width: 700px;
+            .courses-list {
+                list-style: none;
+                padding: 0 0 0 75px;
+                margin: 0;
+                max-width: 700px;
+            }
         }
     }
 

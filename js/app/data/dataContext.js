@@ -10,12 +10,12 @@
 
     function init() {
         return $.getJSON(constants.learningPath.dataUrl).then(function (data) {
-            var mapPromises = [];
+            var promises = [];
             data.courses.forEach(function (item) {
-                mapPromises.push(courseMapper.map(item.title, item.link));
+                promises.push(courseMapper.map(item.title, item.link));
             });
-
-            return $.when.apply($, mapPromises).then(function () {
+          
+            return $.when.apply($, promises).then(function () {
                 var courses = [];
                 for (var i = 0; i < arguments.length; i++) {
                     courses.push(arguments[i]);
