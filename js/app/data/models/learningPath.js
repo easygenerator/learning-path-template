@@ -22,7 +22,7 @@
         function getCompletedCoursesCount() {
             var completedCoursesCount = 0;
             that.courses.forEach(function (course) {
-                if (course.isComplete) {
+                if (course.isCompleted) {
                     completedCoursesCount++;
                 }
             });

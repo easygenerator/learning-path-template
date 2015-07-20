@@ -14,6 +14,14 @@
                 value = event.originalEvent.newValue,
                 result;
 
+            var courses = dataContext.learningPath.courses.filter(function (item) {
+                var expectedKey = constants.course.resultStorageKey + item.id + item.createdOn;
+                return key === expectedKey;
+            });
+
+            if (courses.length < 1)
+                return;
+
             try {
                 result = JSON.parse(value);
             } catch (e) {
@@ -22,14 +30,6 @@
             }
 
             if (!value)
-                return;
-
-            var courses = dataContext.learningPath.courses.filter(function (item) {
-                var expectedKey = constants.course.resultStorageKey + item.id + item.createdOn;
-                return key === expectedKey;
-            });
-
-            if (courses.length < 1)
                 return;
 
             app.trigger(constants.events.course.resultStorageEntryUpdated, courses[0].id, result);

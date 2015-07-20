@@ -6,8 +6,9 @@
             title: title,
             link: link,
             thumbnailUrl: '',
-            isComplete: false,
-            score: 0
+            isCompleted: false,
+            score: 0,
+            createdOn: undefined
         };
 
         app.on(constants.events.course.resultStorageEntryUpdated, function (courseId, result) {
@@ -15,7 +16,7 @@
                 return;
 
             that.score = result.score;
-            that.isComplete = result.isComplete;
+            that.isCompleted = result.isCompleted;
             app.trigger(constants.events.course.resultChanged, that);
         });
 

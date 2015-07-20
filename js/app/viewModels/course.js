@@ -7,7 +7,7 @@
             title: course.title,
             link: course.link,
             thumbnailUrl: course.thumbnailUrl,
-            isComplete: ko.observable(course.isComplete),
+            isCompleted: ko.observable(course.isCompleted),
             score: ko.observable(course.score)
         };
 
@@ -16,7 +16,7 @@
                 return;
 
             viewModel.score(courseData.score);
-            viewModel.isComplete(courseData.isComplete);
+            viewModel.isCompleted(courseData.isCompleted);
         });
 
         return viewModel;

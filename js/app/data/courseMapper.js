@@ -9,8 +9,8 @@
         var course = new Course(title, link);
 
         return $.getJSON(course.link + constants.course.contentDataUrl).then(function (courseData) {
-            course.id = courseData ? courseData.id : undefined;
-            course.createdOn = courseData ? courseData.createdOn : undefined;
+            course.id = courseData.id;
+            course.createdOn = new Date(courseData.createdOn);
 
             setCourseResult();
 
@@ -30,7 +30,7 @@
                 return;
 
             course.score = result.score;
-            course.isComplete = result.isComplete;
+            course.isCompleted = result.isCompleted;
         }
 
         function getThumbnailUrl() {

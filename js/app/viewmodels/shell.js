@@ -1,4 +1,4 @@
-﻿define(['data/dataContext'], function (dataContext) {
+﻿define(['data/dataContext', 'data/courseResultTracker'], function (dataContext, courseResultTracker) {
     'use strict';
 
     var viewModel = {
@@ -10,6 +10,9 @@
 
     function activate() {
         return dataContext.init()
+            .then(function () {
+                courseResultTracker.startTracking();
+            })
             .fail(function () {
                 viewModel.isError(true);
             });

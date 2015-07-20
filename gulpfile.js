@@ -77,13 +77,6 @@ gulp.task('build', ['clean', 'styles'], function () {
         .pipe(addBuildVersion())
         .pipe(gulp.dest(output));
 
-    //gulp.src('js/app/**')
-    //    .pipe(amdOptimize('app'))
-    //    .pipe(concat('app.min.js'))
-    //    .pipe(uglify())
-    //    .pipe(addBuildVersion())
-    //    .pipe(gulp.dest(output + '/js'));
-
     durandal(
       {
           baseDir: 'js/app',

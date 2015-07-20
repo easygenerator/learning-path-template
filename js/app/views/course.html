@@ -1,0 +1,19 @@
+﻿<li class="course-wrapper">
+    <a class="course" target="_blank" data-bind="attr: { href: link}">
+        <div class="course-progress">
+            <div class="circle-progress-bar" data-bind="circleProgress: { score: score(), isCompleted: isCompleted()}">
+                <div class="course-image-wrapper">
+                    <img class="course-image" data-bind="attr: {src: thumbnailUrl}" />
+                </div>
+                <div class="circle-progress-bar-text" data-bind="text: score() + '%'"></div>
+            </div>
+        </div>
+        <div class="course-title" data-bind="css: { 'middle': title.length > 60 && title.length <= 140, 'long': title.length > 140}">
+            <span class="course-title-text" data-bind="text: title"></span>
+        </div>
+        <div class="course-footer">
+            <div class="course-status" data-bind="text: isCompleted()? 'Complete' : 'Failed', css: { complete: isCompleted }"></div>
+            <div class="start-course-link">Start course</div>
+        </div>
+    </a>
+</li>
