@@ -30,7 +30,7 @@
                 return;
 
             course.score = result.score;
-            course.isCompleted = result.isCompleted;
+            course.status = result.status;
         }
 
         function getThumbnailUrl() {

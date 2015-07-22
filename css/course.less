@@ -118,9 +118,9 @@
                 vertical-align: middle;
                 padding-left: 22px;
                 font: 13px 'Roboto-LightItalic';
-                color: @course-status-failed-color;
 
                 &:before {
+                    display: none;
                     content: '';
                     position: absolute;
                     top: 4px;
@@ -128,13 +128,22 @@
                     width: 16px;
                     height: 16px;
                     background-repeat: no-repeat;
-                    background: @course-status-failed-img;
                 }
 
-                &.complete {
+                &.failed {
+                    color: @course-status-failed-color;
+
+                    &:before {
+                        display: block;
+                        background: @course-status-failed-img;
+                    }
+                }
+
+                &.completed {
                     color: @course-status-complete-color;
 
                     &:before {
+                        display: block;
                         background: @course-status-complete-img;
                     }
                 }

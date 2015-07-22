@@ -12,12 +12,12 @@
     },
     update: function (element, valueAccessor) {
         var score = ko.unwrap(valueAccessor().score) || 0,
-            isCompleted = ko.unwrap(valueAccessor().isCompleted),
+            status = ko.unwrap(valueAccessor().status),
             $canvas = $(element).children('canvas'),
             ctx = $canvas[0].getContext('2d'),
             step = 1.5,
             currentScore = 0 - step,
-            progressBarColor = isCompleted ? '#49b8e7' : '#f16162';
+            progressBarColor = getProgressBarColor();
 
         if (window.requestAnimationFrame) {
             animate();
@@ -52,6 +52,19 @@
             ctx.beginPath();
             ctx.arc(53, 53, 50, -0.5 * Math.PI, value * Math.PI);
             ctx.stroke();
+        }
+
+        function getProgressBarColor() {
+            switch (status) {
+                case 'inProgress':
+                    return '#49b8e7';
+                case 'completed':
+                    return '#49b8e7';
+                case 'failed':
+                    return '#f16162';
+                default:
+                    return '#49b8e7';
+            }
         }
     }
 };

@@ -6,7 +6,7 @@
             title: title,
             link: link,
             thumbnailUrl: '',
-            isCompleted: false,
+            status: constants.course.statuses.notAttempted,
             score: 0,
             createdOn: undefined
         };
@@ -16,7 +16,7 @@
                 return;
 
             that.score = result.score;
-            that.isCompleted = result.isCompleted;
+            that.status = result.status;
             app.trigger(constants.events.course.resultChanged, that);
         });
 

@@ -7,16 +7,30 @@
             title: course.title,
             link: course.link,
             thumbnailUrl: course.thumbnailUrl,
-            isCompleted: ko.observable(course.isCompleted),
-            score: ko.observable(course.score)
+            status: ko.observable(course.status),
+            score: ko.observable(course.score),
+            constants: constants
         };
+
+        viewModel.statusTitle = ko.computed(function () {
+            switch (viewModel.status()) {
+                case constants.course.statuses.inProgress:
+                    return 'In progress';
+                case constants.course.statuses.completed:
+                    return 'Completed';
+                case constants.course.statuses.failed:
+                    return 'Failed';
+                default:
+                    return '';
+            }
+        });
 
         app.on(constants.events.course.resultChanged, function (courseData) {
             if (viewModel.id != courseData.id)
                 return;
 
             viewModel.score(courseData.score);
-            viewModel.isCompleted(courseData.isCompleted);
+            viewModel.status(courseData.status);
         });
 
         return viewModel;
