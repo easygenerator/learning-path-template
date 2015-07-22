@@ -1,9 +1,9 @@
 ﻿requirejs.config({
     paths: {
-        'text': '../vendor/requirejs-text/text',
-        'durandal': '../vendor/durandal/js',
-        'plugins': '../vendor/durandal/js/plugins',
-        'transitions': '../vendor/durandal/js/transitions'
+        'text': '../js/vendor/requirejs-text/text',
+        'durandal': '../js/vendor/durandal/js',
+        'plugins': '../js/vendor/durandal/js/plugins',
+        'transitions': '../js/vendor/durandal/js/transitions'
     }
 });
 
