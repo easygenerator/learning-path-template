@@ -1,4 +1,4 @@
-﻿define(['viewModels/course', 'constants', 'data/dataContext', 'durandal/app'], function (Course, constants, dataContext, app) {
+﻿define(['course/course', 'constants', 'data/dataContext', 'durandal/app'], function (Course, constants, dataContext, app) {
     "use strict";
 
     var viewModel = {

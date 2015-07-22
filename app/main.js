@@ -13,15 +13,14 @@ define('knockout', function () { return ko; });
 define(['durandal/app', 'durandal/viewLocator', 'durandal/system'],
     function (app, viewLocator, system) {
         app.title = 'easygenerator';
-        system.debug(false);
+        system.debug(true);
 
         app.configurePlugins({
             http: true
         });
 
         app.start().then(function () {
-            viewLocator.useConvention();
-            app.setRoot('viewmodels/shell');
+            app.setRoot('shell/shell');
         });
     }
 );

@@ -17,8 +17,6 @@
 @progress-bar-text-color: #e6e6e6;
 @progress-bar-completed-courses-color: #84a2be;
 
-@circle-progress-bar-text-color: #fff;
-
 * {
     box-sizing: border-box;
 }
@@ -62,11 +60,6 @@ a:focus {
 
 .learning-path-wrapper {
     height: 100%;
-
-
-    &.shown {
-        display: block;
-    }
 
     .learning-path-container {
         height: 100%;
@@ -195,19 +188,6 @@ a:focus {
         color: @error-color;
         font-size: 30px;
         font-family: Roboto-Regular;
-    }
-}
-
-.circle-progress-bar {
-    position: relative;
-    width: 105px;
-    height: 105px;
-
-    .circle-progress-bar-text {
-        position: absolute;
-        .align-absolute-element();
-        font: 22px 'Roboto-Regular';
-        color: @circle-progress-bar-text-color;
     }
 }
 
