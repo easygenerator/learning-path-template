@@ -1,4 +1,4 @@
-﻿define([], function () {
+﻿define(['constants'], function (constants) {
     "use strict";
 
     var ctor = function (title, courses) {
@@ -22,7 +22,7 @@
         function getCompletedCoursesCount() {
             var completedCoursesCount = 0;
             that.courses.forEach(function (course) {
-                if (course.isCompleted) {
+                if (course.status === constants.course.statuses.completed) {
                     completedCoursesCount++;
                 }
             });
