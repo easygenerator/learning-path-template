@@ -42,7 +42,7 @@
 
             ctx.clearRect(0, 0, $canvas.width(), $canvas.height());
 
-            ctx.lineWidth = 4;
+            ctx.lineWidth = 3;
             ctx.strokeStyle = '#e8e8e8';
 
             ctx.beginPath();
