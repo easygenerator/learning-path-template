@@ -79,11 +79,10 @@ gulp.task('build', ['clean', 'styles'], function () {
 
     durandal(
       {
-          baseDir: 'js/app',
           minify: true
       })
      .pipe(addBuildVersion())
-     .pipe(gulp.dest(output + '/js/app'));
+     .pipe(gulp.dest(output + '/app'));
 
     gulp.src(['favicon.ico', 'readme.txt'])
         .pipe(gulp.dest(output));
