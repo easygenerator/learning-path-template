@@ -15,8 +15,12 @@
             setCourseResult();
 
             if (course.link) {
-                return getThumbnailUrl().then(function (thumbnailUrl) {
-                    course.thumbnailUrl = thumbnailUrl;
+                return $.getJSON(link + constants.course.manifestUrl).then(function (manifest) {
+                    course.thumbnailUrl = manifest.thumbnail ? link + '/' + manifest.thumbnail : constants.course.defaultCourseThumbnailUrl;
+                    if (manifest.progressTrackable !== undefined) {
+                        course.progressTrackable = manifest.progressTrackable;
+                    }
+
                     return course;
                 });
             } else {
@@ -31,14 +35,6 @@
 
             course.score = result.score;
             course.status = result.status;
-        }
-
-        function getThumbnailUrl() {
-            return $.getJSON(link + constants.course.manifestUrl).then(function (manifest) {
-                return manifest.thumbnail ? link + '/' + manifest.thumbnail : constants.course.defaultCourseThumbnailUrl;
-            }).fail(function () {
-                return constants.course.defaultCourseThumbnailUrl;
-            });
         }
     }
 });

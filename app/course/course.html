@@ -1,19 +1,23 @@
 ﻿<li class="course-wrapper">
     <a class="course" target="_blank" data-bind="attr: { href: link}">
         <div class="course-progress">
-            <div class="circle-progress-bar" data-bind="css: status(), circleProgress: { score: score()}">
+            <div class="circle-progress-bar" data-bind="css: status(), circleProgress: { score: progressTrackable? score() : 0}">
                 <div class="course-image-wrapper">
                     <img class="course-image" data-bind="attr: {src: thumbnailUrl}" />
                 </div>
+                <!-- ko if: progressTrackable -->
                 <div class="circle-progress-bar-text" data-bind="text: score() + '%'"></div>
+                <!-- /ko -->
             </div>
         </div>
         <div class="course-title" data-bind="css: { 'middle': title.length > 60 && title.length <= 140, 'long': title.length > 140}">
             <span class="course-title-text" data-bind="text: title"></span>
         </div>
         <div class="course-footer">
+            <!-- ko if: progressTrackable -->
             <!-- ko ifnot: status() === constants.course.statuses.notAttempted -->
             <div class="course-status" data-bind="css: status(), text: statusTitle"></div>
+            <!-- /ko -->
             <!-- /ko -->
             <div class="start-course-link">Start course</div>
         </div>

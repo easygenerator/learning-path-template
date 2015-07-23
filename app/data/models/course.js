@@ -8,7 +8,8 @@
             thumbnailUrl: '',
             status: constants.course.statuses.notAttempted,
             score: 0,
-            createdOn: undefined
+            createdOn: undefined,
+            progressTrackable: true
         };
 
         app.on(constants.events.course.resultStorageEntryUpdated, function (courseId, result) {

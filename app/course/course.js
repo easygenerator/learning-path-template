@@ -9,7 +9,8 @@
             thumbnailUrl: course.thumbnailUrl,
             status: ko.observable(course.status),
             score: ko.observable(course.score),
-            constants: constants
+            constants: constants,
+            progressTrackable: course.progressTrackable
         };
 
         viewModel.statusTitle = ko.computed(function () {

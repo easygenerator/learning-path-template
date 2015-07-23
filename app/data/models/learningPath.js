@@ -6,28 +6,41 @@
             title: title,
             courses: courses,
             getScore: getScore,
-            getCompletedCoursesCount: getCompletedCoursesCount
+            getCompletedCoursesCount: getCompletedCoursesCount,
+            getProgressTrackableCoursesCount: getProgressTrackableCoursesCount
         };
 
         return that;
 
         function getScore() {
-            if (that.courses.length === 0) {
+            var progressTrackableCoursesCount = getProgressTrackableCoursesCount();
+            if (progressTrackableCoursesCount === 0) {
                 return 0;
             }
 
-            return Math.floor(getCompletedCoursesCount() * 100 / that.courses.length);
+            return Math.floor(getCompletedCoursesCount() * 100 / progressTrackableCoursesCount);
         }
 
-        function getCompletedCoursesCount() {
-            var completedCoursesCount = 0;
+        function getProgressTrackableCoursesCount() {
+            var coursesCount = 0;
             that.courses.forEach(function (course) {
-                if (course.status === constants.course.statuses.completed) {
-                    completedCoursesCount++;
+                if (course.progressTrackable) {
+                    coursesCount++;
                 }
             });
 
-            return completedCoursesCount;
+            return coursesCount;
+        }
+
+        function getCompletedCoursesCount() {
+            var coursesCount = 0;
+            that.courses.forEach(function (course) {
+                if (course.progressTrackable && course.status === constants.course.statuses.completed) {
+                    coursesCount++;
+                }
+            });
+
+            return coursesCount;
         }
     };
 
