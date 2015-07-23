@@ -11,12 +11,14 @@
 
 @course-status-complete-color: #49b8e7;
 @course-status-failed-color: #f16162;
+@course-status-in-progress-color: #c7c7ce;
 @course-status-complete-img: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RTQwMDUwRTIyQkI1MTFFNTg1MjI5MzMzOEMyMzY4NTMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RTQwMDUwRTMyQkI1MTFFNTg1MjI5MzMzOEMyMzY4NTMiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpFNDAwNTBFMDJCQjUxMUU1ODUyMjkzMzM4QzIzNjg1MyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpFNDAwNTBFMTJCQjUxMUU1ODUyMjkzMzM4QzIzNjg1MyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsG56IkAAAFOSURBVHjajNPPKwRhHMfxZ4bUOnNwnePyJ3BZB7vhqHBw2iQ3/gJ3cVEUzsiPEmEPclQuTiLUhosDf4Cm2Xh/9Zl6mpjZb71qeub5zD77PN8nqDXeXabKqKOKSGNNNLCNe39y6D2XsI5rtDCnD0R6bundGrrSUKAV2MAZEszgw/1dvdjBN8YQpytY0WrGc8JO72qau2oDnejHpP574oor0fwHbITasK2CX7aqYEnPn8rU7QMjOC0ID+MIN96YZaqhdvkpc4ylTPgQ07jwxi0T2QcC/1ioRRyjOyecntzvKTS9hrGaxxeucsJOmddQHTbqvYgxgVtM/RN2ylxaIw3o18ra3XaqRy1dsRXcYR976GgjbL2ziwPLht7GWZ2oXV1OK5+rlRf8yxSrjd/wjGUMoU8GNWZH95jeA/8yZa/zrHedbeKLbRg2s9f5R4ABANcRUvLXIEAXAAAAAElFTkSuQmCC');
 @course-status-failed-img: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RUExQjhDQ0YyQkI1MTFFNUEzQzNDMEU4OEYwQkFERkQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RUExQjhDRDAyQkI1MTFFNUEzQzNDMEU4OEYwQkFERkQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpFQTFCOENDRDJCQjUxMUU1QTNDM0MwRTg4RjBCQURGRCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpFQTFCOENDRTJCQjUxMUU1QTNDM0MwRTg4RjBCQURGRCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pj6rz9MAAAE3SURBVHjalJO9SgNREIV3N6uVlYjahzyCIKZWAirRJxAlEWsRFFsbsbMUbXwCFf9ian2KPIFRBCGFaIx+A2dhvCyJOfCF3cuZ2ZnJ3Ph9fSMKtAx7kMK3zgrQhUO49ubUPY/DLTzDKrSDxJNwAvuwCG8+wRg8wg7cRflqK3EFnmAGOlmCB9iGRjRY5ulBE+YSfqrw8s/gTE21WrUEu7AZGI6g5N6LOvOqW9XWwmjOwE7hBpZU7r0G5/Vqs0tlCNVSsCWJFdzK8RWSPn32FPzTx/OZyBSq6MrOKinlZbAEX1qScEBZ2Vk79cAzAR8xq7zCw5qWZBhdwLlVcAlTsDBEsHmnLTZxB8da00GqyDvv70IHyroHW1DT/xz2fKYvlxXz5zba7ZrVajc04K6GPKL3A7jyWX8FGAAYNUNo/ih7yQAAAABJRU5ErkJggg==');
+@course-status-in-progress-img: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAYAAAAiYZ4HAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QUVEMjk2OEQzMTBCMTFFNThEMjY4RTRERTdCQUQ3MDEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QUVEMjk2OEUzMTBCMTFFNThEMjY4RTRERTdCQUQ3MDEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpBRUQyOTY4QjMxMEIxMUU1OEQyNjhFNERFN0JBRDcwMSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpBRUQyOTY4QzMxMEIxMUU1OEQyNjhFNERFN0JBRDcwMSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PrI+SUcAAAEqSURBVHjahNLNK0RhFMfxO7qN1xUldhP/AFaWKBvS/AF2rCxmNRtW+Ats2IitDVKSjclbFhbCZpqSsrOwmCLJeP/+6jd1PdI99Znb3OecZ55z5olLpbMoiCJmMIFKuNgQ/Y1TdOAY/WkFSsjjDp04xGAyIfazCcuYwiee/L4R7eEvyDamsYIhvOIZ49jHBRbqBZMYwzwKLtDOozjyxhWv5zNMSU32Iod3b6KjviVO0oIb9abFPpw4WfEVJCtePLWBeg/fUXoo70MflxhBa5CQTYw9696u9WIJXVhPJGv295jz90V0Y1UFOx5ZzovDOEDNven/mcUuNjLBXdJ4t9CMR7T5WGseeS0Ozl31ziq4xR42Uf7vLp17AA/ocUE57bZeeSJVP3/FjwADADGLQsyU8TuKAAAAAElFTkSuQmCC');
 
 @course-progress-bar-completed-color: #49b8e7;
 @course-progress-bar-failed-color: #f16162;
-@course-progress-bar-in-progress-color: #49b8e7;
+@course-progress-bar-in-progress-color: #43aaa3;
 
 @circle-progress-bar-text-color: #fff;
 
@@ -67,8 +69,8 @@
                     color: @course-progress-bar-failed-color;
                 }
 
-                &.inProgress{
-                     color: @course-progress-bar-in-progress-color;
+                &.inProgress {
+                    color: @course-progress-bar-in-progress-color;
                 }
 
                 .circle-progress-bar-text {
@@ -154,7 +156,7 @@
                     display: none;
                     content: '';
                     position: absolute;
-                    top: 4px;
+                    top: 5px;
                     left: 0;
                     width: 16px;
                     height: 16px;
@@ -176,6 +178,16 @@
                     &:before {
                         display: block;
                         background: @course-status-complete-img;
+                    }
+                }
+
+                &.inProgress {
+                    color: @course-status-in-progress-color;
+
+                    &:before {
+                        display: block;
+                        width: 12px;
+                        background: @course-status-in-progress-img;
                     }
                 }
             }
