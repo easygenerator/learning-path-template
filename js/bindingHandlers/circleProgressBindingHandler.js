@@ -12,12 +12,13 @@
     },
     update: function (element, valueAccessor) {
         var score = ko.unwrap(valueAccessor().score) || 0,
+            status = ko.unwrap(valueAccessor().status),
             $canvas = $(element).children('canvas'),
             $element = $(element),
             ctx = $canvas[0].getContext('2d'),
             step = 1.5,
             currentScore = 0 - step,
-            progressBarColor = $element.css('color') || '#49b8e7';
+            progressBarColor = $element.css('color') || '#84a2be';
 
         if (window.requestAnimationFrame) {
             animate();

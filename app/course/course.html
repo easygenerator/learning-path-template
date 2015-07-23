@@ -1,7 +1,7 @@
 ﻿<li class="course-wrapper">
     <a class="course" target="_blank" data-bind="attr: { href: link}">
         <div class="course-progress">
-            <div class="circle-progress-bar" data-bind="css: status(), circleProgress: { score: progressTrackable? score() : 0}">
+            <div class="circle-progress-bar" data-bind="css: status, circleProgress: { score: progressTrackable? score() : 0, status: status}">
                 <div class="course-image-wrapper">
                     <img class="course-image" data-bind="attr: {src: thumbnailUrl}" />
                 </div>
