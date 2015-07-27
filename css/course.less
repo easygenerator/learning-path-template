@@ -1,0 +1,214 @@
+﻿@import "common";
+
+@title-color: #fff;
+@course-background-color: #fff;
+@course-linked-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAACDCAYAAABx/xA8AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjRDRDU5RTlFMUIxMzExRTVBNzg5RDVFNTcwNjIwN0E0IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjRDRDU5RTlGMUIxMzExRTVBNzg5RDVFNTcwNjIwN0E0Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NENENTlFOUMxQjEzMTFFNUE3ODlENUU1NzA2MjA3QTQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NENENTlFOUQxQjEzMTFFNUE3ODlENUU1NzA2MjA3QTQiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5arucOAAAEQ0lEQVR42uyba2jNYRzHn7GNXYw0w6w2w4xQbDZlMZcp5RYpK5ci0XKJvaC8sDcoJNQkL5S8MLcXotyS25QNuYawCaF1JJdD5jbfn/M79W921tk5/+f7n3jq0/N/c/r0PP/n+f1/z+XE1NTUGFLpUFBQ8PP3A8sowtraWkOVBoUMaS6I/aOfLQqHgxVgodMjLY61JMwCy8EP8Bz8tN3S7mAdSAI3wWnb3Ss9txb0Ag/BHtBkW7oYDAI+sA18b3HCuigcACaDr2ATeN9ad7hVHoONIEGfDUMq5WpY8dAFUVybg3CUwsE6QvNY0niwEqSCHJZ0HkgH9eAwQ5oNpmmY2xlqPropjQFl+tvjoI4xkMaDgeAtOBBRChHBb6ZovRd8jjRAt7WsAWPBpWi+Cm0tElvPRpWhGQ9KuFL5PpaDPkzpbFAMZrGkqTpNJBAcYUln6oCrBq8YUkmuSjTPOcQaSJNAZ83qnjOkMY7oc8LtlDFUSQEvwDdwnSWVbK5CP9ZN7ODw1auIRJGuBtO1aylSyXvGgdLmqy2b0iJH4vydJR2t9RXWO+2hmd4ncIslHaH1HQ0KFGm+1tdZU0ZibaY+37QpdYZBCXVLQIaupGnBoUmDfLtIzKxJc22FvVDSNLBFF7g0abbWz5jSflrXM6V9ta5jSjO0fsGSdgQ9dY6+ZknTNDL5bORDocKgiC+Dd6zgINKXYHN7XJ/+/VLp3kKQCG7rNg2lpTM0z01ndm+yPn9iShO9kCZ5IfVkygS3w78xpfG21qGtzdMjXgSHff9EGPRMOhUscEQmyjuVXbEs/ZD7WS39qM/JzO71eylNYUqDa9FUpvSNF1KfY2eFNmWegkrj4iZyOFLZYj31P/balI4EG4xLhz3hSiVlGabQpMHLEP2ZUp+O4hRdINMG0iOtc5nSu1oPZUrvaT2MKZXtHDlY7+RY31gLg8EiJxPLjOVt15Yiko85ZTyPvdLleZoh0qRyHF2h2wI0abXWo0wEt6oilcph+xNdoeczB1LwXkoxU3rRBO41FIBuLKlsYl3TkTyROU/PaF1kMww2LzfALhPFvaNIpBKLT/5zKaikMBMY3RssXfTdygHDfePC4UI4LZWV+nmVzmF2r1y7lJsAcouuN0vaAM5pa+cxR2+VCewfSrAYyJLKil3ufsrZ+SKtKfP0sK4EJGtMsDllnEV2v1dFm8BFEpF8zIHUUomLZFcmGqlc0dwB1rf1NUUjfaPzVlLVUpa0EWzXT6BsG+Sw3ukDcExbXB7uNHLje7rfBG4NyFldGUsq5zly6PtFU9YSVuYgp82VGq0a3I5IrZULJnB5ys9qabD4We80VJEF2ELb3essXXUKyd3gD6bZ0ZqtlsqA2qqBYy4Yw+pe+bvnbhO4niJ/rCtkJduyQjioK8ClYAgrw6/SUCnZ5HyQGWs4pUojl1zOaWBJ5b0eNYFT6cZfAgwANBTIPUgjE6gAAAAASUVORK5CYII=');
+
+@course-title-underline-color: #f0f0f0;
+@course-title-color: #444;
+@course-bottom-shadow-color: #43aaa3;
+@course-top-shadow-color: #eee;
+
+@course-status-complete-color: #49b8e7;
+@course-status-failed-color: #f16162;
+@course-status-in-progress-color: #c7c7ce;
+@course-status-complete-img: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RTQwMDUwRTIyQkI1MTFFNTg1MjI5MzMzOEMyMzY4NTMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RTQwMDUwRTMyQkI1MTFFNTg1MjI5MzMzOEMyMzY4NTMiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpFNDAwNTBFMDJCQjUxMUU1ODUyMjkzMzM4QzIzNjg1MyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpFNDAwNTBFMTJCQjUxMUU1ODUyMjkzMzM4QzIzNjg1MyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsG56IkAAAFOSURBVHjajNPPKwRhHMfxZ4bUOnNwnePyJ3BZB7vhqHBw2iQ3/gJ3cVEUzsiPEmEPclQuTiLUhosDf4Cm2Xh/9Zl6mpjZb71qeub5zD77PN8nqDXeXabKqKOKSGNNNLCNe39y6D2XsI5rtDCnD0R6bundGrrSUKAV2MAZEszgw/1dvdjBN8YQpytY0WrGc8JO72qau2oDnejHpP574oor0fwHbITasK2CX7aqYEnPn8rU7QMjOC0ID+MIN96YZaqhdvkpc4ylTPgQ07jwxi0T2QcC/1ioRRyjOyecntzvKTS9hrGaxxeucsJOmddQHTbqvYgxgVtM/RN2ylxaIw3o18ra3XaqRy1dsRXcYR976GgjbL2ziwPLht7GWZ2oXV1OK5+rlRf8yxSrjd/wjGUMoU8GNWZH95jeA/8yZa/zrHedbeKLbRg2s9f5R4ABANcRUvLXIEAXAAAAAElFTkSuQmCC');
+@course-status-failed-img: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RUExQjhDQ0YyQkI1MTFFNUEzQzNDMEU4OEYwQkFERkQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RUExQjhDRDAyQkI1MTFFNUEzQzNDMEU4OEYwQkFERkQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpFQTFCOENDRDJCQjUxMUU1QTNDM0MwRTg4RjBCQURGRCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpFQTFCOENDRTJCQjUxMUU1QTNDM0MwRTg4RjBCQURGRCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pj6rz9MAAAE3SURBVHjalJO9SgNREIV3N6uVlYjahzyCIKZWAirRJxAlEWsRFFsbsbMUbXwCFf9ian2KPIFRBCGFaIx+A2dhvCyJOfCF3cuZ2ZnJ3Ph9fSMKtAx7kMK3zgrQhUO49ubUPY/DLTzDKrSDxJNwAvuwCG8+wRg8wg7cRflqK3EFnmAGOlmCB9iGRjRY5ulBE+YSfqrw8s/gTE21WrUEu7AZGI6g5N6LOvOqW9XWwmjOwE7hBpZU7r0G5/Vqs0tlCNVSsCWJFdzK8RWSPn32FPzTx/OZyBSq6MrOKinlZbAEX1qScEBZ2Vk79cAzAR8xq7zCw5qWZBhdwLlVcAlTsDBEsHmnLTZxB8da00GqyDvv70IHyroHW1DT/xz2fKYvlxXz5zba7ZrVajc04K6GPKL3A7jyWX8FGAAYNUNo/ih7yQAAAABJRU5ErkJggg==');
+@course-status-in-progress-img: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAYAAAAiYZ4HAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QUVEMjk2OEQzMTBCMTFFNThEMjY4RTRERTdCQUQ3MDEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QUVEMjk2OEUzMTBCMTFFNThEMjY4RTRERTdCQUQ3MDEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpBRUQyOTY4QjMxMEIxMUU1OEQyNjhFNERFN0JBRDcwMSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpBRUQyOTY4QzMxMEIxMUU1OEQyNjhFNERFN0JBRDcwMSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PrI+SUcAAAEqSURBVHjahNLNK0RhFMfxO7qN1xUldhP/AFaWKBvS/AF2rCxmNRtW+Ats2IitDVKSjclbFhbCZpqSsrOwmCLJeP/+6jd1PdI99Znb3OecZ55z5olLpbMoiCJmMIFKuNgQ/Y1TdOAY/WkFSsjjDp04xGAyIfazCcuYwiee/L4R7eEvyDamsYIhvOIZ49jHBRbqBZMYwzwKLtDOozjyxhWv5zNMSU32Iod3b6KjviVO0oIb9abFPpw4WfEVJCtePLWBeg/fUXoo70MflxhBa5CQTYw9696u9WIJXVhPJGv295jz90V0Y1UFOx5ZzovDOEDNven/mcUuNjLBXdJ4t9CMR7T5WGseeS0Ozl31ziq4xR42Uf7vLp17AA/ocUE57bZeeSJVP3/FjwADADGLQsyU8TuKAAAAAElFTkSuQmCC');
+
+@course-progress-bar-completed-color: #49b8e7;
+@course-progress-bar-failed-color: #f16162;
+@course-progress-bar-in-progress-color: #43aaa3;
+
+@circle-progress-bar-text-color: #fff;
+
+.course-wrapper {
+    position: relative;
+
+    &:not(:last-of-type):before {
+        background: @course-linked-image no-repeat;
+        background-size: cover;
+        content: "";
+        display: inline-block;
+        width: 29px;
+        height: 100%;
+        position: absolute;
+        left: -75px;
+        top: 80px;
+    }
+
+    .course {
+        display: inline-block;
+        background-color: @course-background-color;
+        border-radius: 10px;
+        box-shadow: 0 -5px 20px 1px @course-top-shadow-color, 0 3px 0 0 @course-bottom-shadow-color;
+        box-sizing: border-box;
+        margin-bottom: 33px;
+        padding: 15px 20px 0px 70px;
+        position: relative;
+        text-decoration: none;
+        width: 100%;
+
+        .course-progress {
+            position: absolute;
+            left: -53px;
+            top: 10px;
+            width: 106px;
+            height: 106px;
+
+            .circle-progress-bar {
+                position: relative;
+                width: 105px;
+                height: 105px;
+
+                &.completed {
+                    color: @course-progress-bar-completed-color;
+                }
+
+                &.failed {
+                    color: @course-progress-bar-failed-color;
+                }
+
+                &.inProgress {
+                    color: @course-progress-bar-in-progress-color;
+                }
+
+                .circle-progress-bar-text {
+                    position: absolute;
+                    .align-absolute-element();
+                    font: 22px 'Roboto-Regular';
+                    color: @circle-progress-bar-text-color;
+                }
+
+                .course-image-wrapper {
+                    .set-course-image-size() {
+                        width: 80px;
+                        height: 80px;
+                    }
+
+                    .course-image-container() {
+                        position: absolute;
+                        .set-course-image-size();
+                        .align-absolute-element();
+                        border-radius: 50%;
+                        overflow: hidden;
+                    }
+
+                    .course-image-container();
+
+                    &:after {
+                        content: '';
+                        .course-image-container();
+                        background-color: #000;
+                        opacity: 0.3;
+                    }
+
+                    .course-image {
+                        .set-course-image-size();
+                    }
+                }
+            }
+        }
+
+        .course-title {
+            display: table;
+            table-layout: fixed;
+            border-bottom: 1px solid @course-title-underline-color;
+            color: @course-title-color;
+            font-family: 'Roboto-Regular';
+            font-size: 18px;
+            height: 75px;
+            line-height: 30px;
+            -ms-word-wrap: break-word;
+            word-wrap: break-word;
+            width: 100%;
+
+
+            &.middle {
+                font-size: 15px;
+                line-height: 28px;
+            }
+
+            &.long {
+                font-size: 13px;
+                line-height: 24px;
+            }
+
+            .course-title-text {
+                display: table-cell;
+                vertical-align: middle;
+            }
+        }
+
+        .course-footer {
+            display: table;
+            width: 100%;
+            padding: 8px 0px;
+
+            .course-status {
+                display: table-cell;
+                position: relative;
+                vertical-align: middle;
+                padding-left: 22px;
+                font: 13px 'Roboto-LightItalic';
+
+                &:before {
+                    display: none;
+                    content: '';
+                    position: absolute;
+                    top: 5px;
+                    left: 0;
+                    width: 16px;
+                    height: 16px;
+                    background-repeat: no-repeat;
+                }
+
+                &.failed {
+                    color: @course-status-failed-color;
+
+                    &:before {
+                        display: block;
+                        background: @course-status-failed-img;
+                    }
+                }
+
+                &.completed {
+                    color: @course-status-complete-color;
+
+                    &:before {
+                        display: block;
+                        background: @course-status-complete-img;
+                    }
+                }
+
+                &.inProgress {
+                    color: @course-status-in-progress-color;
+
+                    &:before {
+                        display: block;
+                        width: 12px;
+                        background: @course-status-in-progress-img;
+                    }
+                }
+            }
+
+            .start-course-link {
+                display: table-cell;
+                float: right;
+                border: 1px solid @course-bottom-shadow-color;
+                border-radius: 5px;
+                color: @course-bottom-shadow-color;
+                font-family: 'Roboto-Regular';
+                font-size: 12px;
+                padding: 5px 15px;
+                text-decoration: none;
+                text-transform: uppercase;
+
+                &:hover {
+                    color: @title-color;
+                    background-color: @course-bottom-shadow-color;
+                }
+            }
+        }
+    }
+}
