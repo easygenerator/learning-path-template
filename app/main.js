@@ -16,7 +16,8 @@ define(['durandal/app', 'durandal/viewLocator', 'durandal/system'],
         system.debug(false);
 
         app.configurePlugins({
-            http: true
+            http: true,
+            router: true
         });
 
         app.start().then(function () {
