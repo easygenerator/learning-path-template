@@ -2,7 +2,6 @@
     function (ko, dataContext) {
 
         "use strict";
-        
         var viewModel = {
             activate: activate,
             
