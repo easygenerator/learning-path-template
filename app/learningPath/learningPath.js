@@ -1,4 +1,4 @@
-﻿define(['course/course', 'constants', 'data/dataContext', 'durandal/app'], function (Course, constants, dataContext, app) {
+﻿define(['knockout', 'course/course', 'constants', 'data/dataContext', 'durandal/app'], function (ko, Course, constants, dataContext, app) {
     "use strict";
 
     var viewModel = {
