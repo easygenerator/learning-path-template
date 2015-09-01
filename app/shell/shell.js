@@ -1,4 +1,4 @@
-﻿define(['data/dataContext', 'data/courseResultTracker', 'plugins/router', 'routing/routes'], function (dataContext, courseResultTracker, router, routes) {
+﻿define(['data/dataContext', 'data/courseResultTracker', 'plugins/router', 'routing/routes', 'userContext'], function (dataContext, courseResultTracker, router, routes, userContext) {
     'use strict';
 
     var viewModel = {
@@ -16,10 +16,11 @@
     return viewModel;
 
     function activate() {
-        return dataContext.init()
-            .then(function () {
-                courseResultTracker.startTracking();
-                return router.map(routes).buildNavigationModel().activate();
+        return dataContext.init().then(function () {
+                return userContext.init().then(function() {
+                    courseResultTracker.startTracking();
+                    return router.map(routes).buildNavigationModel().activate();
+                });
             })
             .fail(function () {
                 viewModel.isError(true);
