@@ -10,8 +10,8 @@
 define('jquery', function () { return jQuery; });
 define('knockout', function () { return ko; });
 
-define(['durandal/app', 'durandal/viewLocator', 'durandal/system'],
-    function (app, viewLocator, system) {
+define(['durandal/app', 'durandal/viewLocator', 'durandal/system', 'templateSettings'],
+    function (app, viewLocator, system, templateSettings) {
         app.title = 'easygenerator';
         system.debug(false);
 
@@ -21,7 +21,10 @@ define(['durandal/app', 'durandal/viewLocator', 'durandal/system'],
         });
 
         app.start().then(function () {
-            app.setRoot('shell/shell');
+            return templateSettings.init().then(function () {
+                app.setRoot('shell/shell');
+                // initialize xApi here
+            });
         });
     }
 );
