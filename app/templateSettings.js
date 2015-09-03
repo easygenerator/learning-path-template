@@ -3,6 +3,7 @@ define(['jsonReader'], function (jsonReader) {
     var defaultTemplateSetting = {
         xApi: {
             enabled: true,
+            required: false,
             selectedLrs: "default",
             lrs: {
                 uri: "//reports.easygenerator.com/xApi/statements",
