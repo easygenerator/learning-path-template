@@ -1,5 +1,5 @@
-﻿define(['knockout', 'data/dataContext', 'eventManager', 'userContext'],
-    function (ko, dataContext, eventManager, userContext) {
+﻿define(['knockout', 'data/dataContext', 'eventManager', 'userContext', 'xApi/xApi', 'templateSettings'],
+    function (ko, dataContext, eventManager, userContext, xApi, templateSettings) {
         "use strict";
         var emailPattern = /^([\w\.\-]+)@([\w\-]+)((\.(\w){2,6})+)$/;
 
@@ -56,13 +56,12 @@
                 return;
             }
 
-            xApiInitializer.deactivate();
             startLearningPath();
         };
 
         function login() {
             if (viewModel.usermail.isValid() && viewModel.username.isValid()) {
-                xApiInitializer.activate(viewModel.username(), viewModel.usermail()).then(function () {
+                xApi.startReporting(viewModel.username(), viewModel.usermail()).then(function () {
                     startLearningPath();
                 });
             }
@@ -90,6 +89,6 @@
                 showValidationMessages();
             }
 
-            viewModel.allowToSkip(!xApiSettings.xApi.required);
+            viewModel.allowToSkip(!templateSettings.xApi.required);
         };
     });
