@@ -8,12 +8,13 @@ define(['jsonReader'], function (jsonReader) {
             lrs: {
                 uri: "//reports.easygenerator.com/xApi/statements",
                 credentials: {
-                    "username": "",
-                    "password": ""
+                    username: "",
+                    password: ""
                 },
                 authenticationRequired: false
             },
-            allowedVerbs: ['started', 'stopped', 'passed', 'failed']
+            allowedVerbs: ['started', 'stopped', 'passed', 'failed'],
+            version: "1.0.0"
         }
     };
 
