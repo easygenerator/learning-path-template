@@ -19,6 +19,7 @@
   ],
   "dependencies": {
     "durandal": "~2.1.0",
-    "q": "1.0.1"
+    "q": "1.0.1",
+    "underscore": "~1.8.3"
   }
 }

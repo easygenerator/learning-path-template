@@ -2,10 +2,10 @@
     function (ko, dataContext, eventManager, userContext, xApi, templateSettings) {
         "use strict";
         var emailPattern = /^([\w\.\-]+)@([\w\-]+)((\.(\w){2,6})+)$/;
-
+        
         var viewModel = {
             activate: activate,
-            
+
             title: dataContext.learningPath.title,
 
             usermail: usermail(),
@@ -61,9 +61,8 @@
 
         function login() {
             if (viewModel.usermail.isValid() && viewModel.username.isValid()) {
-                xApi.startReporting(viewModel.username(), viewModel.usermail()).then(function () {
-                    startLearningPath();
-                });
+                xApi.startReporting(viewModel.username(), viewModel.usermail());
+                startLearningPath();
             }
             else {
                 showValidationMessages();

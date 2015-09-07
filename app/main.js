@@ -12,6 +12,7 @@ define('knockout', function () { return ko; });
 
 define(['durandal/app', 'durandal/viewLocator', 'durandal/system', 'templateSettings'],
     function (app, viewLocator, system, templateSettings) {
+        
         app.title = 'easygenerator';
         system.debug(false);
 

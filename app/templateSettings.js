@@ -6,7 +6,7 @@ define(['jsonReader'], function (jsonReader) {
             required: false,
             selectedLrs: "default",
             lrs: {
-                uri: "//reports.easygenerator.com/xApi/statements",
+                uri: "https://reports.easygenerator.com/xApi/statements",
                 credentials: {
                     username: "",
                     password: ""
@@ -26,7 +26,7 @@ define(['jsonReader'], function (jsonReader) {
 
     function init() {
         var that = this;
-        return jsonReader.read('settings.js').then(function(settings) {
+        return jsonReader.read('settings.js').then(function (settings) {
             var fullSettings = _.defaults(settings, defaultTemplateSetting);
             that.xApi = fullSettings.xApi;
         });
