@@ -29,7 +29,7 @@
 
         // subscribe for learner path events
         subscriptions.push(eventManager.subscribeForEvent(eventManager.events.learningPathStarted).then(onLearningPathStarted));
-        subscriptions.push(eventManager.subscribeForEvent(eventManager.events.learningPathFinished).then(onLearningPathFifnished));
+        subscriptions.push(eventManager.subscribeForEvent(eventManager.events.learningPathFinished).then(onLearningPathFinished));
     }
 
     function stopReporting() {
@@ -46,8 +46,10 @@
         sendStatementIfAllowed(startedStatement);
     }
 
-    function onLearningPathFifnished() {
-
+    function onLearningPathFinished() {
+        var finishedVerb = new ADL.XAPIStatement.Verb("http://adlnet.gov/expapi/verbs/exited", "stopped");
+        var finishedStatement = new ADL.XAPIStatement(actor, finishedVerb, activity);
+        sendStatementIfAllowed(finishedStatement);
     }
 
     function sendStatementIfAllowed(statement) {
