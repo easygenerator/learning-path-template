@@ -30,6 +30,9 @@
         // subscribe for learner path events
         subscriptions.push(eventManager.subscribeForEvent(eventManager.events.learningPathStarted).then(onLearningPathStarted));
         subscriptions.push(eventManager.subscribeForEvent(eventManager.events.learningPathFinished).then(onLearningPathFinished));
+
+        // configure global xapi error handler
+        ADL.xhrRequestOnError = onXapiError;
     }
 
     function stopReporting() {
@@ -58,4 +61,6 @@
         }
     }
 
+    function onXapiError(xhr, method, url, callback, callbackargs) {
+    }
 });
