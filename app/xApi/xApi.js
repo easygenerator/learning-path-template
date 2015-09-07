@@ -41,10 +41,19 @@
     }
 
     function onLearningPathStarted() {
-        
+        var startedVerb = new ADL.XAPIStatement.Verb("http://adlnet.gov/expapi/verbs/launched", "started");
+        var startedStatement = new ADL.XAPIStatement(actor, startedVerb, activity);
+        sendStatementIfAllowed(startedStatement);
     }
 
     function onLearningPathFifnished() {
-        
+
     }
+
+    function sendStatementIfAllowed(statement) {
+        if (_.contains(templateSettings.xApi.allowedVerbs, statement.verb.display["en-US"])) {
+            ADL.XAPIWrapper.sendStatement(statement);
+        }
+    }
+
 });
