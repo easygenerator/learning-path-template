@@ -44,12 +44,20 @@
     }
 
     function onLearningPathStarted() {
+        // send started statement
         var startedVerb = new ADL.XAPIStatement.Verb("http://adlnet.gov/expapi/verbs/launched", "started");
         var startedStatement = new ADL.XAPIStatement(actor, startedVerb, activity);
         sendStatementIfAllowed(startedStatement);
     }
 
     function onLearningPathFinished() {
+        // send passed/failed statement
+        var resultScore = dataContext.learningPath.getScore();
+        var resultVerb = resultScore === 100 ? ADL.verbs.passed : ADL.verbs.failed;
+        resultVerb.result = { score: resultScore };
+        sendStatementIfAllowed(resultVerb);
+
+        // send stopped statement
         var finishedVerb = new ADL.XAPIStatement.Verb("http://adlnet.gov/expapi/verbs/exited", "stopped");
         var finishedStatement = new ADL.XAPIStatement(actor, finishedVerb, activity);
         sendStatementIfAllowed(finishedStatement);
