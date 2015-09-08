@@ -8,29 +8,29 @@
     </div>
 
     <section class="content login">
-        <h2 data-translate-text="[tracking and tracing header]">Your credentials for progress tracking</h2>
+        <h2>Your credentials for progress tracking</h2>
         <form>
             <div class="form-row" data-bind="css: { error: !username.isValid() && username.isModified() }">
                 <input type="text" ondrop="return false;" data-bind="value: username, valueUpdate: 'afterkeydown',css:{empty:!username().length}">
-                <label data-translate-text="[tracking and tracing name field]">Your name</label>
-                <div class='error-message' data-bind="visible: !username.isValid() && username.isModified()" data-translate-text="[tracking and tracing name is not valid]"></div>
+                <label>Your name</label>
+                <div class='error-message' data-bind="visible: !username.isValid() && username.isModified()"><span>Fill in your name</span></div>
             </div>
             <div class="form-row" data-bind="css: { error: !usermail.isValid() && usermail.isModified() }">
                 <input type="email" ondrop="return false;" data-bind="value: usermail, valueUpdate: 'afterkeydown',css:{empty:!usermail().length}">
-                <label data-translate-text="[tracking and tracing email field]">Your e-mail</label>
-                <span class="error-message" data-bind="visible: !usermail.isValid() && usermail.isModified()" data-translate-text="[tracking and tracing email is not valid]"></span>
+                <label>Your e-mail</label>
+                <span class="error-message" data-bind="visible: !usermail.isValid() && usermail.isModified()">Enter a valid e-mail</span>
             </div>
             <div class="form-row">
                 <button class='button primary' data-bind="click: login">
-                    <span data-translate-text="[tracking and tracing start]" data-translate-title="[tracking and tracing start]">Start and report my progress</span>
+                    <span title="Start and report my results">Start and report my progress</span>
                 </button>
                 <!-- ko if: allowToSkip() -->
-                <button class="button link" href="#" data-bind="click: skip" data-translate-text="[tracking and tracing skip reporting]" data-translate-title="[tracking and tracing skip reporting]">Do not report, just start</button>
+                <button class="button link" href="#" data-bind="click: skip" title="Do not report, just start">Do not report, just start</button>
                 <!-- /ko -->
             </div>
         </form>
         <footer>
-            * By clicking the button "<span data-translate-text="[tracking and tracing start]"></span>” you agree to the fact that your results and scores will be stored. These results will only be visible to the organizer (author) of your course.
+            * By clicking the button "<span>Start and report my results</span>” you agree to the fact that your results and scores will be stored. These results will only be visible to the organizer (author) of your course.
         </footer>
     </section>
 
