@@ -6,7 +6,7 @@ define(['jsonReader'], function (jsonReader) {
             required: false,
             selectedLrs: "default",
             lrs: {
-                uri: "https://reports.easygenerator.com/xApi/statements",
+                uri: "https://reports.easygenerator.com/xApi/",
                 credentials: {
                     username: "",
                     password: ""
