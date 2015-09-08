@@ -46,7 +46,7 @@
     function onLearningPathStarted() {
         // send started statement
         var startedVerb = new ADL.XAPIStatement.Verb("http://adlnet.gov/expapi/verbs/launched", "started");
-        var startedStatement = new ADL.XAPIStatement(actor, startedVerb, activity);
+        var startedStatement = getActivityStatement(startedVerb);
         sendStatementIfAllowed(startedStatement);
     }
 
@@ -54,12 +54,13 @@
         // send passed/failed statement
         var resultScore = dataContext.learningPath.getScore();
         var resultVerb = resultScore === 100 ? ADL.verbs.passed : ADL.verbs.failed;
-        resultVerb.result = { score: resultScore };
-        sendStatementIfAllowed(resultVerb);
+        var resultStatement = getActivityStatement(resultVerb);
+        resultStatement.result = { score: resultScore };
+        sendStatementIfAllowed(resultStatement);
 
         // send stopped statement
         var finishedVerb = new ADL.XAPIStatement.Verb("http://adlnet.gov/expapi/verbs/exited", "stopped");
-        var finishedStatement = new ADL.XAPIStatement(actor, finishedVerb, activity);
+        var finishedStatement = getActivityStatement(finishedVerb);
         sendStatementIfAllowed(finishedStatement);
     }
 
@@ -67,6 +68,10 @@
         if (_.contains(templateSettings.xApi.allowedVerbs, statement.verb.display["en-US"])) {
             ADL.XAPIWrapper.sendStatement(statement);
         }
+    }
+
+    function getActivityStatement(verb) {
+        return new ADL.XAPIStatement(actor, verb, activity);
     }
 
     function onXapiError(xhr, method, url, callback, callbackargs) {
