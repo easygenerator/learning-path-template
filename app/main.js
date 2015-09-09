@@ -24,7 +24,6 @@ define(['durandal/app', 'durandal/viewLocator', 'durandal/system', 'templateSett
         app.start().then(function () {
             return templateSettings.init().then(function () {
                 app.setRoot('shell/shell');
-                // initialize xApi here
             });
         });
     }

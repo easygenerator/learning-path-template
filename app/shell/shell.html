@@ -1,9 +1,9 @@
 ﻿<div class="learning-path-wrapper clearfix">
     <!-- ko ifnot: isError -->
-        <!-- ko if: hasToAuthenticate -->
+        <!-- ko ifnot: authenticated -->
             <!-- ko compose: { model: 'xApi/login/login' } --><!-- /ko -->
         <!-- /ko -->
-        <!-- ko ifnot: hasToAuthenticate -->
+        <!-- ko if: authenticated -->
             <!--ko router: { cacheViews: false, transition: 'entrance' }--><!--/ko-->
         <!-- /ko -->
     <!-- /ko -->

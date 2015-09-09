@@ -3,15 +3,19 @@
     var actor = null;
     var activity = null;
     var subscriptions = [];
+    var currentUser = ko.observable();
 
     var xApi = {
         startReporting: startReporting,
-        stopReporting: stopReporting
+        stopReporting: stopReporting,
+        currentUser: currentUser
     }
 
     return xApi;
 
     function startReporting(name, email) {
+        currentUser({ username: name, email: email });
+
         // configure xapi wrapper to use specified lrs.
         var lrsConfiguration = {
             endpoint: templateSettings.xApi.lrs.uri,
