@@ -9,6 +9,11 @@
             route: 'login',
             moduleId: 'xApi/login/login',
             title: 'xApi Login'
+        },
+        {
+            route: 'xapierror',
+            moduleId: 'xApi/error/error',
+            title: 'xApi Error'
         }
     ];
 });

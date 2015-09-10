@@ -1,38 +1,24 @@
-﻿define(['knockout', 'durandal/app', 'plugins/router', '../xApiInitializer', '../configuration/xApiSettings'],
-    function (ko, app, router, xApiInitializer, xApiSettings) {
+﻿define(['plugins/router', 'xApi/xApi', 'templateSettings', 'data/dataContext'],
+    function (router, xApi, templateSettings, dataContext) {
+        var allowToContinue = !templateSettings.xApi.required;
+        
+        var restartCourse = function() {
+            router.navigate('');
+        };
 
-        var
-            navigateBackUrl = '',
-
-            allowToContinue = ko.observable(false);
-
-        restartCourse = function () {
-            app.trigger('user:set-progress-clear', function () {
-                var rootUrl = location.toString().replace(location.hash, '');
-                router.navigate(rootUrl, { replace: true, trigger: true });
-            });
-        },
-
-        continueLearning = function () {
-            if (!allowToContinue()) {
+        var continueLearning = function() {
+            if (!allowToContinue) {
                 return;
             }
 
-            xApiInitializer.deactivate();
-            router.navigate(navigateBackUrl);
-            app.trigger('user:authentication-skipped');
-        },
-
-        activate = function (backUrl) {
-            navigateBackUrl = backUrl;
-            allowToContinue(!xApiSettings.xApi.required);
+            xApi.stopReporting();
+            router.navigate('');
         };
-
+      
         return {
             allowToContinue: allowToContinue,
             restartCourse: restartCourse,
             continueLearning: continueLearning,
-
-            activate: activate
+            title: dataContext.learningPath.title
         };
     });

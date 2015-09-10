@@ -1,4 +1,4 @@
-﻿define(['templateSettings', 'data/dataContext', 'eventManager'], function (templateSettings, dataContext, eventManager) {
+﻿define(['plugins/router', 'templateSettings', 'data/dataContext', 'eventManager'], function (router, templateSettings, dataContext, eventManager) {
 
     var actor = null;
     var activity = null;
@@ -41,7 +41,7 @@
 
     function stopReporting() {
         _.each(subscriptions, function (subscription) {
-            if (!_.isNullOrUndefined(subscription && subscription.off)) {
+            if (subscription && subscription.off) {
                 subscription.off();
             }
         });
@@ -79,5 +79,8 @@
     }
 
     function onXapiError(xhr, method, url, callback, callbackargs) {
+        setTimeout(function () {
+            router.navigate('xapierror', { replace: true, trigger: true });
+        }, 0);
     }
 });
