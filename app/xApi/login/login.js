@@ -11,7 +11,7 @@
             usermail: usermail(),
             username: username(),
 
-            allowToSkip: ko.observable(false),
+            allowToSkip: !templateSettings.xApi.required,
 
             skip: skip,
             login: login
@@ -52,7 +52,7 @@
         };
 
         function skip() {
-            if (!viewModel.allowToSkip()) {
+            if (!viewModel.allowToSkip) {
                 return;
             }
 
@@ -89,7 +89,5 @@
                 viewModel.usermail(user.email);
                 showValidationMessages();
             }
-
-            viewModel.allowToSkip(!templateSettings.xApi.required);
         };
     });
