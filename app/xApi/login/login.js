@@ -55,15 +55,13 @@
             if (!viewModel.allowToSkip) {
                 return;
             }
-
+            xApi.stopReporting();
             startLearningPath();
         };
 
         function login() {
             if (viewModel.usermail.isValid() && viewModel.username.isValid()) {
-                var username = viewModel.username();
-                var email = viewModel.usermail();
-                xApi.startReporting(username, email);
+                xApi.startReporting(viewModel.username(), viewModel.usermail());
                 startLearningPath();
             }
             else {

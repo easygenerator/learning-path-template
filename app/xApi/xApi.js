@@ -100,7 +100,7 @@
 
     function onXapiError(xhr, method, url, callback, callbackargs) {
         setTimeout(function () {
-            router.navigate('xapierror', { replace: true, trigger: true });
+            router.navigate('xapierror');
         }, 0);
     }
 });

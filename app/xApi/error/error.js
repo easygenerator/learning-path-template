@@ -2,7 +2,9 @@
     function (router, xApi, templateSettings, dataContext) {
         var allowToContinue = !templateSettings.xApi.required;
         
-        var restartCourse = function() {
+        var restartCourse = function () {
+            xApi.restart();
+
             router.navigate('');
         };
 
