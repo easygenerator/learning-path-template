@@ -7,9 +7,9 @@
             activate: activate,
             router: router
         };
-        
-        viewModel.authenticated = ko.computed(function () {
-            return templateSettings.xApi.enabled && xApi.currentUser();
+
+        viewModel.requireAuthentication = ko.computed(function () {
+            return templateSettings.xApi.enabled && xApi.enabled() && !xApi.currentUser();
         });
 
         return viewModel;
@@ -18,6 +18,12 @@
             return dataContext.init().then(function () {
                 return userContext.init().then(function () {
                     courseResultTracker.startTracking();
+                    // xApi
+                    if (templateSettings.xApi.enabled) {
+                        xApi.init();
+                        router.guardRoute = loginGuard;
+                    }
+                    //
                     return router.map(routes).buildNavigationModel().activate();
                 });
             })
@@ -25,4 +31,16 @@
                     viewModel.isError(true);
                 });
         }
+
+        function loginGuard(instance, instruction) {
+            if (instruction.config.route === 'login') {
+                if (!viewModel.requireAuthentication()) {
+                    return '';
+                }
+            } else if (viewModel.requireAuthentication()) {
+                return 'login';
+            }
+
+            return true;
+        };
     });

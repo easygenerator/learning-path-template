@@ -4,18 +4,22 @@
     var activity = null;
     var subscriptions = [];
     var currentUser = ko.observable();
+    // enable state of xApi module. Will be false if xApi was switched off (skiped).
+    var enabled = ko.observable(templateSettings.xApi.enabled);
 
     var xApi = {
+        currentUser: currentUser,
+        enabled: enabled,
+
+        init: init,
         startReporting: startReporting,
         stopReporting: stopReporting,
-        currentUser: currentUser
-    }
+        restart: restart
+    };
 
     return xApi;
 
-    function startReporting(name, email) {
-        currentUser({ username: name, email: email });
-
+    function init() {
         // configure xapi wrapper to use specified lrs.
         var lrsConfiguration = {
             endpoint: templateSettings.xApi.lrs.uri,
@@ -24,6 +28,14 @@
         };
 
         ADL.XAPIWrapper.changeConfig(lrsConfiguration);
+
+        // configure global xapi error handler
+        ADL.xhrRequestOnError = onXapiError;
+    }
+
+    function startReporting(name, email) {
+        currentUser({ username: name, email: email });
+        enabled(true);
 
         // initialize actor for current learner. Will be used for all statements.
         actor = new ADL.XAPIStatement.Agent('mailto:' + email, name);
@@ -34,17 +46,25 @@
         // subscribe for learner path events
         subscriptions.push(eventManager.subscribeForEvent(eventManager.events.learningPathStarted).then(onLearningPathStarted));
         subscriptions.push(eventManager.subscribeForEvent(eventManager.events.learningPathFinished).then(onLearningPathFinished));
-
-        // configure global xapi error handler
-        ADL.xhrRequestOnError = onXapiError;
     }
 
-    function stopReporting() {
+    function clearSubscriptions() {
         _.each(subscriptions, function (subscription) {
             if (subscription && subscription.off) {
                 subscription.off();
             }
         });
+        subscriptions = [];
+    }
+
+    function stopReporting() {
+        enabled(false);
+        clearSubscriptions();
+    }
+
+    function restart() {
+        currentUser(null);
+        clearSubscriptions();
     }
 
     function onLearningPathStarted() {
