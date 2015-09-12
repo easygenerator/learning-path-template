@@ -18,8 +18,8 @@
         viewModel.completedCoursesCount(dataContext.learningPath.getCompletedCoursesCount());
         viewModel.progressTrackableCoursesCount = dataContext.learningPath.getProgressTrackableCoursesCount();
 
-        dataContext.learningPath.courses.forEach(function (course) {
-            viewModel.courses.push(new Course(course));
+        viewModel.courses = _.map(dataContext.learningPath.courses, function(course) {
+            return new Course(course);
         });
 
         app.on(constants.events.course.resultChanged, function () {
