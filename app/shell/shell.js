@@ -1,4 +1,4 @@
-﻿define(['data/dataContext', 'data/courseResultTracker', 'plugins/router', 'routing/routes', 'userContext', 'xApi/xApi', 'templateSettings'],
+﻿define(['data/dataContext', 'progress/courseResultTracker', 'plugins/router', 'routing/routes', 'userContext', 'xApi/xApi', 'templateSettings'],
     function (dataContext, courseResultTracker, router, routes, userContext, xApi, templateSettings) {
         'use strict';
 
