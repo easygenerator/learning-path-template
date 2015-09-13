@@ -1,5 +1,5 @@
-﻿define(['plugins/router', 'xApi/xApi', 'templateSettings', 'data/dataContext'],
-    function (router, xApi, templateSettings, dataContext) {
+﻿define(['plugins/router', 'xApi/xApi', 'templateSettings', 'data/dataContext', 'constants'],
+    function (router, xApi, templateSettings, dataContext, constants) {
         var allowToContinue = !templateSettings.xApi.required;
         
         var restartCourse = function () {
@@ -12,7 +12,7 @@
             if (!allowToContinue) {
                 return;
             }
-
+            app.trigger(constants.user.authenticationSkipped);
             xApi.stopReporting();
             router.navigate('');
         };

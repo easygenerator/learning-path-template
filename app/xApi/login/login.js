@@ -1,8 +1,8 @@
-﻿define(['knockout', 'plugins/router', 'data/dataContext', 'eventManager', 'userContext', 'xApi/xApi', 'templateSettings'],
-    function (ko, router, dataContext, eventManager, userContext, xApi, templateSettings) {
+﻿define(['knockout', 'plugins/router', 'data/dataContext', 'eventManager', 'userContext', 'xApi/xApi', 'templateSettings', 'constants'],
+    function (ko, router, dataContext, eventManager, userContext, xApi, templateSettings, constants) {
         "use strict";
         var emailPattern = /^([\w\.\-]+)@([\w\-]+)((\.(\w){2,6})+)$/;
-        
+
         var viewModel = {
             activate: activate,
 
@@ -55,6 +55,7 @@
             if (!viewModel.allowToSkip) {
                 return;
             }
+            app.trigger(constants.user.authenticationSkipped);
             xApi.stopReporting();
             startLearningPath();
         };
@@ -62,6 +63,7 @@
         function login() {
             if (viewModel.usermail.isValid() && viewModel.username.isValid()) {
                 xApi.startReporting(viewModel.username(), viewModel.usermail());
+                app.trigger(constants.user.authenticated, { username: username, email: email });
                 startLearningPath();
             }
             else {
