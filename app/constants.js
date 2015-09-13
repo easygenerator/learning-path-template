@@ -1,14 +1,15 @@
 ﻿define([], function () {
     return {
         learningPath: {
-            dataUrl: 'data/data.json'
+            dataUrl: 'data/data.json',
+            progressStorageKey: 'learning_path_progress'
         },
         course: {
             manifestUrl: '/manifest.json',
             defaultCourseThumbnailUrl: 'img/default.png',
             contentDataUrl: '/content/data.js',
             resultStorageKey: 'course_result',
-            progressStorageKey: '',
+            progressStorageKey: 'course_progress',
             statuses: {
                 completed: 'completed',
                 failed: 'failed',
