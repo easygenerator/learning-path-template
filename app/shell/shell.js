@@ -1,5 +1,5 @@
-﻿define(['data/dataContext', 'progress/courseResultTracker', 'plugins/router', 'routing/routes', 'userContext', 'xApi/xApi', 'templateSettings'],
-    function (dataContext, courseResultTracker, router, routes, userContext, xApi, templateSettings) {
+﻿define(['data/dataContext', 'progress/courseResultTracker', 'plugins/router', 'routing/routes', 'userContext', 'xApi/xApi', 'templateSettings', 'progress/progressContext'],
+    function (dataContext, courseResultTracker, router, routes, userContext, xApi, templateSettings, ) {
         'use strict';
 
         var viewModel = {
@@ -17,6 +17,7 @@
         function activate() {
             return dataContext.init().then(function () {
                 return userContext.init().then(function () {
+                    progressContext.init();
                     courseResultTracker.startTracking();
                     // xApi
                     if (templateSettings.xApi.enabled) {

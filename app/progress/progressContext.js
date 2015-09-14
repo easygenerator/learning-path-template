@@ -1,5 +1,5 @@
-﻿define(['durandal/system', 'durandal/app', 'plugins/router', 'eventManager', 'data/dataContext', 'userContext', 'constants'],
-    function (system, app, router, eventManager, dataContext, userContext, constants) {
+﻿define(['durandal/system', 'durandal/app', 'plugins/router', 'eventManager', 'data/dataContext', 'userContext', 'constants', 'progress/localStorageProgressProvider'],
+    function (system, app, router, eventManager, dataContext, userContext, constants, progressStorage) {
 
         var
             statuses = constants.progressContext.statuses,
@@ -59,29 +59,24 @@
             self.storage.removeProgress();
         }
 
-        function init(storage) {
-            if (_.isFunction(storage.getProgress) && _.isFunction(storage.saveProgress)) {
+        function init() {
+            self.storage = progressStorage;
+            self.progress._v = dataContext.learningPath.createdOn.getTime();
 
-                self.storage = storage;
-                self.progress._v = dataContext.learningPath.createdOn.getTime();
+            restore(userContext.getCurrentUser());
 
-                restore(userContext.getCurrentUser());
+            eventManager.subscribeForEvent(eventManager.events.learningPathFinished).then(onFinished);
 
-                eventManager.subscribeForEvent(eventManager.events.learningPathFinished).then(onFinished);
+            app.on(constants.user.authenticated).then(onAuthenticated);
+            app.on(constants.user.authenticationSkipped).then(onAuthenticationSkipped);
 
-                app.on(constants.user.authenticated).then(onAuthenticated);
-                app.on(constants.user.authenticationSkipped).then(onAuthenticationSkipped);
+            router.on('router:navigation:composition-complete', onNavigated);
 
-                router.on('router:navigation:composition-complete', onNavigated);
-
-                window.onbeforeunload = function () {
-                    if (context.status() === statuses.error) {
-                        return 'Course progress cannot be saved. Please try again or contact your teacher if the problem persists.';
-                    }
+            window.onbeforeunload = function() {
+                if (context.status() === statuses.error) {
+                    return 'Course progress cannot be saved. Please try again or contact your teacher if the problem persists.';
                 }
-            } else {
-                throw 'Cannot use this storage';
-            }
+            };
         }
 
         function restore(user) {
