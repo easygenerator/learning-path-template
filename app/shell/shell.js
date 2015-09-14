@@ -11,6 +11,18 @@
             title: ko.observable()
         };
 
+        viewModel.viewSettings = function () {
+            var settings = {
+                exitButtonVisible: true
+            };
+
+            var activeInstruction = router.activeInstruction();
+            if (_.isObject(activeInstruction)) {
+                settings.exitButtonVisible = !activeInstruction.config.hideExitButton;
+            }
+            return settings;
+        }
+
         viewModel.requireAuthentication = ko.computed(function () {
             return templateSettings.xApi.enabled && xApi.enabled() && !xApi.currentUser();
         });

@@ -8,12 +8,14 @@
         {
             route: 'login',
             moduleId: 'xApi/login/login',
-            title: 'xApi Login'
+            title: 'xApi Login',
+            hideExitButton: true
         },
         {
             route: 'xapierror',
             moduleId: 'xApi/error/error',
-            title: 'xApi Error'
+            title: 'xApi Error',
+            hideExitButton: true
         }
     ];
 });
