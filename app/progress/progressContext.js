@@ -1,6 +1,6 @@
-﻿define(['durandal/system', 'durandal/app', 'plugins/router', 'eventManager', 'data/dataContext', 'userContext', 'constants', 'progress/localStorageProgressProvider'],
-    function (system, app, router, eventManager, dataContext, userContext, constants, progressStorage) {
-
+﻿define(['durandal/system', 'durandal/app', 'plugins/router', 'eventManager', 'data/dataContext', 'userContext', 'constants'],
+    function (system, app, router, eventManager, dataContext, userContext, constants) {
+        
         var
             statuses = constants.progressContext.statuses,
             self = {
@@ -59,7 +59,7 @@
             self.storage.removeProgress();
         }
 
-        function init() {
+        function init(progressStorage) {
             self.storage = progressStorage;
             self.progress._v = dataContext.learningPath.createdOn.getTime();
 
@@ -67,8 +67,8 @@
 
             eventManager.subscribeForEvent(eventManager.events.learningPathFinished).then(onFinished);
 
-            app.on(constants.user.authenticated).then(onAuthenticated);
-            app.on(constants.user.authenticationSkipped).then(onAuthenticationSkipped);
+            app.on(constants.events.user.authenticated).then(onAuthenticated);
+            app.on(constants.events.user.authenticationSkipped).then(onAuthenticationSkipped);
 
             router.on('router:navigation:composition-complete', onNavigated);
 

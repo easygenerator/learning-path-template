@@ -55,7 +55,7 @@
             if (!viewModel.allowToSkip) {
                 return;
             }
-            app.trigger(constants.user.authenticationSkipped);
+            app.trigger(constants.events.user.authenticationSkipped);
             xApi.stopReporting();
             startLearningPath();
         };
@@ -63,7 +63,7 @@
         function login() {
             if (viewModel.usermail.isValid() && viewModel.username.isValid()) {
                 xApi.startReporting(viewModel.username(), viewModel.usermail());
-                app.trigger(constants.user.authenticated, { username: username, email: email });
+                app.trigger(constants.events.user.authenticated, { username: username, email: email });
                 startLearningPath();
             }
             else {

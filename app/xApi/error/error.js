@@ -12,7 +12,7 @@
             if (!allowToContinue) {
                 return;
             }
-            app.trigger(constants.user.authenticationSkipped);
+            app.trigger(constants.events.user.authenticationSkipped);
             xApi.stopReporting();
             router.navigate('');
         };
