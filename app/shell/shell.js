@@ -1,5 +1,5 @@
 ﻿define(['data/dataContext', 'progress/courseResultTracker', 'plugins/router', 'routing/routes', 'userContext', 'xApi/xApi', 'templateSettings', 'progress/progressContext'],
-    function (dataContext, courseResultTracker, router, routes, userContext, xApi, templateSettings, ) {
+    function (dataContext, courseResultTracker, router, routes, userContext, xApi, templateSettings, progressContext) {
         'use strict';
 
         var viewModel = {
