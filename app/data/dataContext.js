@@ -21,7 +21,7 @@
                     courses.push(arguments[i]);
                 }
 
-                self.learningPath = new LearningPath(data.title, courses);
+                self.learningPath = new LearningPath(data.id, data.title, new Date(data.createdOn), courses);
             });
         });
     }

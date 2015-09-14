@@ -1,16 +1,19 @@
 ﻿define(['data/dataContext', 'constants'], function (dataContext, constants) {
-    var pathProgressKey = constants.learningPath.progressStorageKey + dataContext.learningPath.id + context.learningPath.createdOn;
+    
+    var pathProgressKey = null;
 
-    var module = {
-        progressProvider: {
-            getProgress: getProgress,
-            saveProgress: saveProgress,
-            saveResults: saveResults,
-            removeProgress: removeProgress
-        }
+    var progressProvider = {
+        init: init,
+        getProgress: getProgress,
+        saveProgress: saveProgress,
+        removeProgress: removeProgress
+    };
+
+    return progressProvider;
+
+    function init() {
+        pathProgressKey = constants.learningPath.progressStorageKey + dataContext.learningPath.id + dataContext.learningPath.createdOn;
     }
-
-    return module;
 
     function getProgress() {
         var progress = {};
