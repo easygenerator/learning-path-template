@@ -1,0 +1,27 @@
+﻿<section class="exit-course-wrapper">
+    <span class="save-progress-status-text">
+        <!-- ko if: isProgressSaved() -->
+        <span class="saved" data-translate-text="[progress has been saved]">Progress is saved</span>
+        <!-- /ko -->
+        <!-- ko if: isProgressNotSaved() -->
+        <span class="error" data-translate-text="[progress is not saved]">Progress is not saved</span>
+        <!-- /ko -->
+    </span>
+    <div class="exit-course-button-container" data-bind="dropDown: {}, css: { disabled: isNavigationLocked }">
+        <span class="exit-course-button"></span>
+        <ul class="exit-course-menu">
+            <li class="exit-course-menu-item" data-bind="click: close" data-translate-text="[save and continue later]">Save and continue later</li>
+            <li class="exit-course-menu-item" data-bind="click: openFinishPopup" data-translate-text="[finish course]">Finish course</li>
+        </ul>
+    </div>
+    <div class="finish-course-layout" data-bind="visible: status() == statuses.sendingRequests">
+        <div class="finish-course-layout-block"></div>
+        <div class="finish-course-layout-loader">
+            <span class="finish-course-layout-loader-text" data-translate-text="[tracking and tracing reporting progress]">reporting progress...</span>
+        </div>
+    </div>
+    <!-- ko if: finishPopupVisibility -->
+    <!-- ko compose: { view: 'dialogs/finishCourse', model: 'dialogs/finishCourse', activationData: { finish: finish, close: closeFinishPopup } } -->
+    <!-- /ko -->
+    <!-- /ko -->
+</section>

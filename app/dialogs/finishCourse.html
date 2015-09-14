@@ -1,0 +1,29 @@
+﻿<section class="popup-layout">
+    <div class="popup">
+        <div class="top-section">
+            <span class="close-btn" data-bind="click: close"></span>
+        </div>
+        <article>
+            <header>
+                <h2>
+                    <span data-translate-text="[finish course popup title]">You are one step away from finishing the course</span>
+                </h2>
+            </header>
+            <section>
+                <h3 data-translate-text="[finish course popup explanation title]">Please note that:</h3>
+                <ul>
+                    <li data-translate-text="[finish course popup first remark]">- your final score will be reported</li>
+                    <li data-translate-text="[finish course popup second remark]">- your current progress will NOT be restored when you open the course next time</li>
+                </ul>
+            </section>
+            <footer>
+                <span class="button-wrapper">
+                    <button class="button block default" data-bind="click: close" data-translate-text="[cancel]" data-translate-title="[cancel]">Cancel</button>
+                </span>
+                <span class="button-wrapper">
+                    <button class="button block primary" data-bind="click: finish" data-translate-text="[finish course]" data-translate-title="[finish course]">Finish course</button>
+                </span>
+            </footer>
+        </article>
+    </div>
+</section>
