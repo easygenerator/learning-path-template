@@ -201,6 +201,8 @@ a:focus {
     @import "1270";
 }
 
+/*#region easy styles customizations */
+
 .login {
     .error-message {
         display: block;
@@ -210,3 +212,29 @@ a:focus {
         box-sizing: content-box;
     }
 }
+
+/*#endregion */
+
+/*#region blockout */
+
+.blockout {
+    visibility: hidden;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: #323a45;
+    opacity: 0;
+    -ms-transition: opacity 250ms ease-in;
+    -webkit-transition: opacity 250ms ease-in;
+    transition: opacity 250ms ease-in;
+    z-index: 2000;
+}
+
+    .blockout.active {
+        visibility: visible;
+        opacity: 0.8;
+    }
+
+/*#endregion */

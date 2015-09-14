@@ -25,6 +25,9 @@
             user: {
                 authenticated: 'user:authenticated',
                 authenticationSkipped: "user:authentication-skipped"
+            },
+            app: {
+                closed: "app:closed"
             }
         },
         progressContext: {

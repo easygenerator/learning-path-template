@@ -1,11 +1,13 @@
-﻿define(['data/dataContext', 'progress/courseResultTracker', 'plugins/router', 'routing/routes', 'userContext', 'xApi/xApi', 'templateSettings', 'progress/progressContext'],
-    function (dataContext, courseResultTracker, router, routes, userContext, xApi, templateSettings, progressContext) {
+﻿define(['durandal/app', 'data/dataContext', 'progress/courseResultTracker', 'plugins/router', 'routing/routes', 'userContext', 'xApi/xApi', 'templateSettings', 'progress/progressContext',
+    'progress/localStorageProgressProvider', 'constants'],
+    function (app, dataContext, courseResultTracker, router, routes, userContext, xApi, templateSettings, progressContext, progressStorage, constants) {
         'use strict';
 
         var viewModel = {
             isError: ko.observable(false),
             activate: activate,
-            router: router
+            router: router,
+            isClosed: ko.observable(false)
         };
 
         viewModel.requireAuthentication = ko.computed(function () {
@@ -15,10 +17,17 @@
         return viewModel;
 
         function activate() {
+            app.on(constants.events.app.closed).then(function () {
+                viewModel.isClosed(true);
+            });
+
             return dataContext.init().then(function () {
                 return userContext.init().then(function () {
-                    progressContext.init();
+                    // progress
+                    progressStorage.init();
+                    progressContext.init(progressStorage);
                     courseResultTracker.startTracking();
+                    //
                     // xApi
                     if (templateSettings.xApi.enabled) {
                         xApi.init();
@@ -28,9 +37,9 @@
                     return router.map(routes).buildNavigationModel().activate();
                 });
             })
-                .fail(function () {
-                    viewModel.isError(true);
-                });
+            .fail(function () {
+                viewModel.isError(true);
+            });
         }
 
         function loginGuard(instance, instruction) {
