@@ -2,12 +2,13 @@
     'progress/localStorageProgressProvider', 'constants'],
     function (app, dataContext, courseResultTracker, router, routes, userContext, xApi, templateSettings, progressContext, progressStorage, constants) {
         'use strict';
-
+        
         var viewModel = {
             isError: ko.observable(false),
             activate: activate,
             router: router,
-            isClosed: ko.observable(false)
+            isClosed: ko.observable(false),
+            title: ko.observable()
         };
 
         viewModel.requireAuthentication = ko.computed(function () {
@@ -23,6 +24,7 @@
 
             return dataContext.init().then(function () {
                 return userContext.init().then(function () {
+                    viewModel.title(dataContext.learningPath.title);
                     // progress
                     progressStorage.init();
                     progressContext.init(progressStorage);

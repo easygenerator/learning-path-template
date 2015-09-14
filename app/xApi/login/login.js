@@ -1,12 +1,10 @@
-﻿define(['knockout', 'plugins/router', 'data/dataContext', 'eventManager', 'userContext', 'xApi/xApi', 'templateSettings', 'constants'],
-    function (ko, router, dataContext, eventManager, userContext, xApi, templateSettings, constants) {
+﻿define(['durandal/app', 'knockout', 'plugins/router', 'eventManager', 'userContext', 'xApi/xApi', 'templateSettings', 'constants'],
+    function (app, ko, router, eventManager, userContext, xApi, templateSettings, constants) {
         "use strict";
         var emailPattern = /^([\w\.\-]+)@([\w\-]+)((\.(\w){2,6})+)$/;
 
         var viewModel = {
             activate: activate,
-
-            title: dataContext.learningPath.title,
 
             usermail: usermail(),
             username: username(),
@@ -62,7 +60,9 @@
 
         function login() {
             if (viewModel.usermail.isValid() && viewModel.username.isValid()) {
-                xApi.startReporting(viewModel.username(), viewModel.usermail());
+                var username = viewModel.username();
+                var email = viewModel.usermail();
+                xApi.startReporting(username, email);
                 app.trigger(constants.events.user.authenticated, { username: username, email: email });
                 startLearningPath();
             }

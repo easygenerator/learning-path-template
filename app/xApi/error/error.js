@@ -1,5 +1,5 @@
-﻿define(['plugins/router', 'xApi/xApi', 'templateSettings', 'data/dataContext', 'constants'],
-    function (router, xApi, templateSettings, dataContext, constants) {
+﻿define(['durandal/app', 'plugins/router', 'xApi/xApi', 'templateSettings', 'data/dataContext', 'constants'],
+    function (app, router, xApi, templateSettings, dataContext, constants) {
         var allowToContinue = !templateSettings.xApi.required;
         
         var restartCourse = function () {

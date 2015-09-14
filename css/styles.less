@@ -61,6 +61,10 @@ a:focus {
 .learning-path-wrapper {
     height: 100%;
 
+    .content.login{
+        margin-top: -70px;
+    }
+
     .learning-path-container {
         height: 100%;
         min-width: 600px;
@@ -68,14 +72,13 @@ a:focus {
         .learning-path-title-panel {
             background-color: @title-background-color;
             float: left;
-            padding: 30px;
-            width: 500px;
+            padding: 20px 30px;
+            width: 400px;
             overflow: auto;
             height: 100%;
 
             .learning-path-title-panel-content {
-                border-bottom: 1px solid @title-underline-color;
-                padding-bottom: 20px;
+                padding-bottom: 70px;
 
                 .logo {
                     width: 180px;
@@ -88,7 +91,7 @@ a:focus {
                     font-family: 'Roboto-Regular';
                     font-size: 18px;
                     line-height: 28px;
-                    margin-top: 70px;
+                    margin-top: 20px;
                 }
 
                 .learning-path-title {
@@ -189,17 +192,15 @@ a:focus {
         font-size: 30px;
         font-family: Roboto-Regular;
     }
+
+    .exit-course-container{
+        position: absolute;
+        top: 20px;
+        right: 30px;
+    }
 }
 
 @import "course";
-
-@media (max-width:1430px) {
-    @import "1430";
-}
-
-@media (max-width:1270px) {
-    @import "1270";
-}
 
 /*#region easy styles customizations */
 
@@ -212,7 +213,16 @@ a:focus {
         box-sizing: content-box;
     }
 }
+.header-items-holder {
+    display: table;
+    width: 100%;
+    vertical-align: middle;
 
+        .logo-wrapper{
+            display: table-cell;
+            padding-top: 5px;
+        }
+}
 /*#endregion */
 
 /*#region blockout */
@@ -238,3 +248,11 @@ a:focus {
     }
 
 /*#endregion */
+
+@media (max-width:1430px) {
+    @import "1430";
+}
+
+@media (max-width:1270px) {
+    @import "1270";
+}

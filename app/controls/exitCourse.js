@@ -1,7 +1,7 @@
 ﻿define(['durandal/app', 'windowOperations', 'progress/progressContext', 'constants'],
     function (app, windowOperations, progressContext,  constants) {
         "use strict";
-
+        
         var progressStatuses = constants.progressContext.statuses;
 
         var statuses = {
