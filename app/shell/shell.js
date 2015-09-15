@@ -11,6 +11,16 @@
             title: ko.observable()
         };
 
+        viewModel.cssName = ko.computed(function() {
+            var activeItem = router.activeItem();
+            if (_.isObject(activeItem)) {
+                var moduleId = activeItem.__moduleId__;
+                moduleId = moduleId.slice(moduleId.lastIndexOf('/') + 1);
+                return moduleId;
+            }
+            return '';
+        });
+
         viewModel.viewSettings = function () {
             var settings = {
                 exitButtonVisible: true,
