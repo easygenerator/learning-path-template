@@ -30,6 +30,11 @@
                 closed: "app:closed"
             }
         },
+        xApi: {
+            extenstionKeys: {
+                learningPathId: "http://easygenerator/expapi/learningpath/id"
+            }
+        },
         progressContext: {
             statuses: {
                 undefined: 'undefined',
