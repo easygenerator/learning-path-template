@@ -47,10 +47,6 @@
             self.progress.user = 0;
         }
 
-        function onFinished() {
-            self.storage.saveResults();
-        }
-
         function get() {
             return self.progress;
         }
@@ -64,8 +60,6 @@
             self.progress._v = dataContext.learningPath.createdOn.getTime();
 
             restore(userContext.getCurrentUser());
-
-            eventManager.subscribeForEvent(eventManager.events.learningPathFinished).then(onFinished);
 
             app.on(constants.events.user.authenticated).then(onAuthenticated);
             app.on(constants.events.user.authenticationSkipped).then(onAuthenticationSkipped);

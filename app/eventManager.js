@@ -28,9 +28,9 @@
             learningPathFinished = function (data, callback) {
                 return executeAfterSubscribersDone(events.learningPathFinished, data, callback);
             },
-            
+
             executeAfterSubscribersDone = function (event, eventData, callback) {
-                if (_.isNullOrUndefined(app.callbacks) || _.isNullOrUndefined(app.callbacks[event])) {
+                if (!app.callbacks || !app.callbacks[event]) {
                     return Q.fcall(function () {
                         if (_.isFunction(callback)) {
                             callback();

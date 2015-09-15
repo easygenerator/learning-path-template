@@ -1,7 +1,7 @@
-﻿define(['durandal/app', 'windowOperations', 'progress/progressContext', 'constants'],
-    function (app, windowOperations, progressContext,  constants) {
+﻿define(['durandal/app', 'windowOperations', 'progress/progressContext', 'constants', 'eventManager', 'data/dataContext'],
+    function (app, windowOperations, progressContext, constants, eventManager, dataContext) {
         "use strict";
-        
+
         var progressStatuses = constants.progressContext.statuses;
 
         var statuses = {
@@ -31,9 +31,9 @@
 
         return viewModel;
 
-        function onCourseFinishedCallback() {
+        function onLearningPathFinishedCallback() {
+            eventManager.turnAllEventsOff();
             viewModel.status(statuses.finished);
-
             progressContext.status(progressStatuses.ignored);
             windowOperations.close();
         }
@@ -55,8 +55,8 @@
                 return;
             }
             viewModel.status(statuses.sendingRequests);
-            //var course = courseRepository.get();
-            //course.finish(onCourseFinishedCallback);
+
+            eventManager.learningPathFinished(dataContext.learningPath, onLearningPathFinishedCallback);
 
             progressContext.remove();
         }
