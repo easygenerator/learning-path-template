@@ -1,5 +1,5 @@
-﻿define(['plugins/router', 'templateSettings', 'data/dataContext', 'eventManager', 'progress/progressContext', 'constants'],
-    function (router, templateSettings, dataContext, eventManager, progressContext, constants) {
+﻿define(['plugins/router', 'templateSettings', 'data/dataContext', 'eventManager', 'xApi/xApiClientWrapper', 'progress/progressContext', 'constants'],
+    function (router, templateSettings, dataContext, eventManager, xApiClientWrapper, progressContext, constants) {
 
         var actor = null;
         var activity = null;
@@ -81,34 +81,36 @@
         }
 
         function onLearningPathStarted() {
-            return Q.fcall(function() {
+            return Q.fcall(function () {
                 // send started statement
                 var startedVerb = new ADL.XAPIStatement.Verb("http://adlnet.gov/expapi/verbs/launched", "started");
                 var startedStatement = getActivityStatement(startedVerb);
-                sendStatementIfAllowed(startedStatement);
+                return sendStatementIfAllowed(startedStatement);
             });
         }
 
         function onLearningPathFinished() {
-            return Q.fcall(function() {
-                // send passed/failed statement
-                var resultScore = dataContext.learningPath.getScore();
-                var resultVerb = resultScore === 100 ? ADL.verbs.passed : ADL.verbs.failed;
-                var resultStatement = getActivityStatement(resultVerb);
-                resultStatement.result = { score: resultScore };
-                sendStatementIfAllowed(resultStatement);
+            var requests = [];
+            // send passed/failed statement
+            var resultScore = dataContext.learningPath.getScore();
+            var resultVerb = resultScore === 100 ? ADL.verbs.passed : ADL.verbs.failed;
+            var resultStatement = getActivityStatement(resultVerb);
+            resultStatement.result = { score: resultScore };
+            requests.push(sendStatementIfAllowed(resultStatement));
 
-                // send stopped statement
-                var finishedVerb = new ADL.XAPIStatement.Verb("http://adlnet.gov/expapi/verbs/exited", "stopped");
-                var finishedStatement = getActivityStatement(finishedVerb);
-                sendStatementIfAllowed(finishedStatement);
-            });
+            // send stopped statement
+            var finishedVerb = new ADL.XAPIStatement.Verb("http://adlnet.gov/expapi/verbs/exited", "stopped");
+            var finishedStatement = getActivityStatement(finishedVerb);
+            requests.push(sendStatementIfAllowed(finishedStatement));
+
+            return Q.allSettled(requests);
         }
 
         function sendStatementIfAllowed(statement) {
             if (_.contains(templateSettings.xApi.allowedVerbs, statement.verb.display["en-US"])) {
-                ADL.XAPIWrapper.sendStatement(statement);
+                return xApiClientWrapper.sendStatement(statement);
             }
+            return Q.fcall(function () { });
         }
 
         function getActivityStatement(verb) {
