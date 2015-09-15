@@ -61,7 +61,7 @@ a:focus {
 .learning-path-wrapper {
     height: 100%;
 
-    .content.login{
+    .content.login {
         margin-top: -70px;
     }
 
@@ -73,9 +73,15 @@ a:focus {
             background-color: @title-background-color;
             float: left;
             padding: 20px 30px;
-            width: 400px;
+            width: 500px;
             overflow: auto;
             height: 100%;
+
+            &.static {
+                float: none;
+                height: auto;
+                width: 100%;
+            }
 
             .learning-path-title-panel-content {
                 padding-bottom: 70px;
@@ -193,7 +199,7 @@ a:focus {
         font-family: Roboto-Regular;
     }
 
-    .exit-course-container{
+    .exit-course-container {
         position: absolute;
         top: 20px;
         right: 30px;
@@ -213,15 +219,16 @@ a:focus {
         box-sizing: content-box;
     }
 }
+
 .header-items-holder {
     display: table;
     width: 100%;
     vertical-align: middle;
 
-        .logo-wrapper{
-            display: table-cell;
-            padding-top: 5px;
-        }
+    .logo-wrapper {
+        display: table-cell;
+        padding-top: 5px;
+    }
 }
 /*#endregion */
 
@@ -242,10 +249,10 @@ a:focus {
     z-index: 2000;
 }
 
-    .blockout.active {
-        visibility: visible;
-        opacity: 0.8;
-    }
+.blockout.active {
+    visibility: visible;
+    opacity: 0.8;
+}
 
 /*#endregion */
 

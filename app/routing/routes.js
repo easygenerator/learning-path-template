@@ -9,7 +9,8 @@
             route: 'login',
             moduleId: 'xApi/login/login',
             title: 'xApi Login',
-            hideExitButton: true
+            hideExitButton: true,
+            onlyHorizontalHeader: true
         },
         {
             route: 'xapierror',
