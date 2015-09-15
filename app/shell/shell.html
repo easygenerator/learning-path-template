@@ -15,6 +15,9 @@
                 </div>
                 <div class="learning-path">Learning path:</div>
                 <div class="learning-path-title" data-bind="text: title, css: { 'long': title.length > 60 }"></div>
+                <!-- ko if: viewSettings().progressControlVisible -->
+                    <!-- ko compose: 'controls/progressControl' --><!-- /ko -->
+                <!-- /ko -->
             </div>
         </div>
         <!-- ko router: { cacheViews: false, transition: 'entrance' } --><!-- /ko -->

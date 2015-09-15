@@ -14,13 +14,15 @@
         viewModel.viewSettings = function () {
             var settings = {
                 exitButtonVisible: true,
-                onlyHorizontalHeader: true
+                onlyHorizontalHeader: true,
+                progressControlVisible: true
             };
 
             var activeInstruction = router.activeInstruction();
             if (_.isObject(activeInstruction)) {
                 settings.exitButtonVisible = !activeInstruction.config.hideExitButton;
                 settings.onlyHorizontalHeader = activeInstruction.config.onlyHorizontalHeader;
+                settings.progressControlVisible = activeInstruction.config.progressControlVisible;
             }
             return settings;
         }

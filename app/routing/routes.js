@@ -3,7 +3,8 @@
         {
             route: '',
             moduleId: 'learningPath/learningPath',
-            title: 'Learning path'
+            title: 'Learning path',
+            progressControlVisible: true
         },
         {
             route: 'login',
