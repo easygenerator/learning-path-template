@@ -3,9 +3,9 @@
 
         var actor = null;
         var activity = null;
+        var attemptId = null;
         var subscriptions = [];
         var currentUser = ko.observable();
-        var attemptId = progressContext.get().attemptId;
 
         // enable state of xApi module. Will be false if xApi was switched off (skiped).
         var enabled = ko.observable(templateSettings.xApi.enabled);
@@ -34,6 +34,16 @@
 
             // configure global xapi error handler
             ADL.xhrRequestOnError = onXapiError;
+
+            var progress = progressContext.get();
+            attemptId = progress.attemptId;
+
+            // restore xApi user
+            if (_.isObject(progress.user)) {
+                xApi.startReporting(progress.user.username, progress.user.email);
+            } else if (progress.user === 0) {
+                xApi.stopReporting();
+            }
         }
 
         function startReporting(name, email) {

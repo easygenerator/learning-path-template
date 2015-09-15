@@ -2,7 +2,7 @@
     'progress/localStorageProgressProvider', 'constants'],
     function (app, dataContext, courseResultTracker, router, routes, userContext, xApi, templateSettings, progressContext, progressStorage, constants) {
         'use strict';
-        
+
         var viewModel = {
             isError: ko.observable(false),
             activate: activate,
@@ -45,6 +45,13 @@
                     progressStorage.init();
                     progressContext.init(progressStorage);
                     courseResultTracker.startTracking();
+
+                    var progress = progressContext.get();
+                    if (_.isObject(progress)) {
+                        if (_.isString(progress.url)) {
+                            window.location.hash = progress.url;
+                        }
+                    }
                     //
                     // xApi
                     if (templateSettings.xApi.enabled) {
