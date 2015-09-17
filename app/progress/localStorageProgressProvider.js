@@ -39,11 +39,8 @@
         // remove progress for the learning path.
         removeProgressByKey(pathProgressKey);
 
-        // remove progress and resuults for path's courses.
+        // remove resuults for path's courses.
         dataContext.learningPath.courses.forEach(function (course) {
-            var courseProgressKey = constants.course.progressStorageKey + course.id + course.createdOn;
-            removeProgressByKey(courseProgressKey);
-
             var courseResultKey = constants.course.resultStorageKey + course.id + course.createdOn;
             removeProgressByKey(courseResultKey);
         });

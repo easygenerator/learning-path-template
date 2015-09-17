@@ -9,7 +9,6 @@
             defaultCourseThumbnailUrl: 'img/default.png',
             contentDataUrl: '/content/data.js',
             resultStorageKey: 'course_result',
-            progressStorageKey: 'course_progress',
             statuses: {
                 completed: 'completed',
                 failed: 'failed',
