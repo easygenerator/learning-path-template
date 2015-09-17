@@ -15,9 +15,10 @@
         },
         {
             route: 'xapierror',
-            moduleId: 'xApi/error/error',
+            moduleId: 'xApi/error/xapierror',
             title: 'xApi Error',
-            hideExitButton: true
+            hideExitButton: true,
+            onlyHorizontalHeader: true
         }
     ];
 });
