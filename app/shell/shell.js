@@ -7,8 +7,7 @@
             isError: ko.observable(false),
             activate: activate,
             router: router,
-            isClosed: ko.observable(false),
-            title: ko.observable()
+            isClosed: ko.observable(false)            
         };
 
         viewModel.cssName = ko.computed(function() {
@@ -20,22 +19,6 @@
             }
             return '';
         });
-
-        viewModel.viewSettings = function () {
-            var settings = {
-                exitButtonVisible: true,
-                onlyHorizontalHeader: true,
-                progressControlVisible: true
-            };
-
-            var activeInstruction = router.activeInstruction();
-            if (_.isObject(activeInstruction)) {
-                settings.exitButtonVisible = !activeInstruction.config.hideExitButton;
-                settings.onlyHorizontalHeader = activeInstruction.config.onlyHorizontalHeader;
-                settings.progressControlVisible = activeInstruction.config.progressControlVisible;
-            }
-            return settings;
-        }
 
         viewModel.requireAuthentication = ko.computed(function () {
             return templateSettings.xApi.enabled && xApi.enabled() && !xApi.currentUser();
@@ -50,7 +33,6 @@
 
             return dataContext.init().then(function () {
                 return userContext.init().then(function () {
-                    viewModel.title(dataContext.learningPath.title);
                     // progress
                     progressStorage.init();
                     progressContext.init(progressStorage);

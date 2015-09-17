@@ -1,0 +1,21 @@
+<div class="learning-path-title-panel" id="header" data-bind="css: { static: viewSettings().onlyHorizontalHeader }">
+	<div class="learning-path-title-panel-content">
+		<div class="header-items-holder">
+			<div class="logo-wrapper">
+				<div class="logo"></div>
+			</div>
+			<!-- ko if: viewSettings().exitButtonVisible -->
+			<div class="exit-course-container">
+				<!-- ko compose: 'controls/exitCourse' -->
+				<!-- /ko -->
+			</div>
+			<!-- /ko -->
+		</div>
+		<div class="learning-path">Learning path:</div>
+		<div class="learning-path-title" data-bind="text: title, css: { 'long': title.length > 60 }"></div>
+		<!-- ko if: viewSettings().progressControlVisible -->
+		<!-- ko compose: 'controls/progressControl' -->
+		<!-- /ko -->
+		<!-- /ko -->
+	</div>
+</div>
