@@ -58,6 +58,12 @@ a:focus {
     height: 100%;
 }
 
+.logo {
+    width: 180px;
+    height: 32px;
+    background: @logo no-repeat;
+}
+                
 .learning-path-wrapper {
     height: 100%;
 
@@ -88,11 +94,7 @@ a:focus {
                 max-width: 960px;
                 margin: 0 auto;
 
-                .logo {
-                    width: 180px;
-                    height: 32px;
-                    background: @logo no-repeat;
-                }
+
 
                 .learning-path {
                     color: @title-panel-caption-color;
@@ -270,6 +272,37 @@ a:focus {
     opacity: 0.8;
 }
 
+/*#endregion */
+
+/*#region xApi error */
+#xapiError.content-wrapper{
+    max-width: 960px;
+    margin: auto;
+    text-align: center;
+}
+.xapi-error-container {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.xapi-error-container-description {
+    color: #4d606c;
+    font-family: Roboto Slab;
+    margin-bottom: 60px;
+}
+
+.xapi-error-container-buttons .button:first-child {
+    margin-right: 35px;
+}
+
+.text-wrapper-xApi-error {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    max-width: 960px;
+    display: table;
+}
 /*#endregion */
 
 @media (max-width:1430px) {
