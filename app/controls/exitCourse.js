@@ -14,16 +14,14 @@
             status: ko.observable(statuses.readyToFinish),
             statuses: statuses,
             finishPopupVisibility: ko.observable(false),
+            isProgressSaved: ko.observable(false),
 
             close: close,
             finish: finish,
             openFinishPopup: openFinishPopup,
-            closeFinishPopup: closeFinishPopup
+            closeFinishPopup: closeFinishPopup,
+            activate: activate
         };
-
-        viewModel.isProgressSaved = ko.computed(function () {
-            return progressContext.status() === progressStatuses.saved;
-        });
 
         viewModel.isProgressNotSaved = ko.computed(function () {
             return progressContext.status() === progressStatuses.error;
@@ -31,6 +29,11 @@
 
         return viewModel;
 
+        function activate() {
+            app.on(constants.events.course.resultChanged, function () {
+                viewModel.isProgressSaved(true);
+            });
+        }
         function onLearningPathFinishedCallback() {
             eventManager.turnAllEventsOff();
             viewModel.status(statuses.finished);
