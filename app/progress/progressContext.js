@@ -52,8 +52,6 @@
             app.on(constants.events.user.authenticated).then(onAuthenticated);
             app.on(constants.events.user.authenticationSkipped).then(onAuthenticationSkipped);
 
-            router.on('router:navigation:composition-complete', onNavigated);
-
             window.onbeforeunload = function() {
                 if (context.status() === statuses.error) {
                     return 'Course progress cannot be saved. Please try again or contact your teacher if the problem persists.';
