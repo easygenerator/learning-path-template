@@ -55,13 +55,7 @@
                     progressStorage.init();
                     progressContext.init(progressStorage);
                     courseResultTracker.startTracking();
-
-                    var progress = progressContext.get();
-                    if (_.isObject(progress)) {
-                        if (_.isString(progress.url)) {
-                            window.location.hash = progress.url;
-                        }
-                    }
+                    
                     //
                     // xApi
                     if (templateSettings.xApi.enabled) {

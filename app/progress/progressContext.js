@@ -7,7 +7,6 @@
                 storage: null,
                 progress: {
                     _v: 1,
-                    url: '',
                     user: null,
                     attemptId: system.guid()
                 }
@@ -26,25 +25,14 @@
             context.status(self.storage.saveProgress(self.progress) ? statuses.saved : statuses.error);
         }
 
-        function onNavigated(obj, instruction) {
-            if (instruction.config.moduleId === 'xApi/error/error') {
-                return;
-            }
-            if (_.isEmpty(self.progress.url)) {
-                self.progress.url = instruction.fragment;
-            }
-            else if (self.progress.url !== instruction.fragment) {
-                self.progress.url = instruction.fragment;
-                save();
-            }
-        }
-
         function onAuthenticated(user) {
             self.progress.user = user;
+            save();
         }
 
         function onAuthenticationSkipped() {
             self.progress.user = 0;
+            save();
         }
 
         function get() {
