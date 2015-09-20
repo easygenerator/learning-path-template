@@ -18,7 +18,8 @@
             moduleId: 'xApi/error/xapierror',
             title: 'xApi Error',
             hideExitButton: true,
-            onlyHorizontalHeader: true
+            onlyHorizontalHeader: true,
+            hideHeader: true
         }
     ];
 });

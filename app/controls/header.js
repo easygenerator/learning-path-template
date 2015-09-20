@@ -11,7 +11,8 @@ define(['data/dataContext', 'plugins/router'],
             var settings = {
                 exitButtonVisible: true,
                 onlyHorizontalHeader: true,
-                progressControlVisible: true
+                progressControlVisible: true,
+                headerVisible: true
             };
 
             var activeInstruction = router.activeInstruction();
@@ -19,6 +20,7 @@ define(['data/dataContext', 'plugins/router'],
                 settings.exitButtonVisible = !activeInstruction.config.hideExitButton;
                 settings.onlyHorizontalHeader = activeInstruction.config.onlyHorizontalHeader;
                 settings.progressControlVisible = activeInstruction.config.progressControlVisible;
+                settings.headerVisible = !activeInstruction.config.hideHeader;
             }
             return settings;
         }
