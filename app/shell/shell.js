@@ -1,7 +1,10 @@
-﻿define(['durandal/app', 'data/dataContext', 'progress/courseResultTracker', 'plugins/router', 'routing/routes', 'userContext', 'xApi/xApi', 'templateSettings', 'progress/progressContext',
+﻿define(['durandal/app', 'data/dataContext', 'progress/courseResultTracker', 'plugins/router', 'routing/routes', 'routing/isViewReadyMixin', 'userContext', 'xApi/xApi', 'templateSettings', 'progress/progressContext',
     'progress/localStorageProgressProvider', 'constants'],
-    function (app, dataContext, courseResultTracker, router, routes, userContext, xApi, templateSettings, progressContext, progressStorage, constants) {
+    function (app, dataContext, courseResultTracker, router, routes, isViewReady, userContext, xApi, templateSettings, progressContext, progressStorage, constants) {
         'use strict';
+
+        
+        isViewReady.assign(router, true);
 
         var viewModel = {
             isError: ko.observable(false),

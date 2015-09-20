@@ -1,9 +1,14 @@
 ﻿<div class="learning-path-wrapper clearfix" data-bind="css: 'module-' + cssName()">
     <!-- ko ifnot: isError -->
-    <section class="learning-path-container">
+    <section class="learning-path-container" data-bind="style: { opacity: router.isViewReady() ? '1' : '0' }">
         <!-- ko compose: 'controls/header' --><!-- /ko -->
-        <!-- ko router: { cacheViews: false, transition: 'entrance' } --><!-- /ko -->
+        <div data-bind="style: { opacity: router.isViewReady() ? '1' : '0' }">
+            <!-- ko router: { cacheViews: false } --><!-- /ko -->
+        </div>
     </section>
+    <!-- ko ifnot: router.isViewReady -->
+        <!-- ko compose: 'controls/loader.html' --><!-- /ko -->
+    <!-- /ko -->
     <!-- /ko -->
     <!-- ko if: isError -->
     <div class="error">
@@ -12,3 +17,4 @@
     <!-- /ko -->
     <div class="blockout" data-bind="css: { active: isClosed }"></div>
 </div>
+
