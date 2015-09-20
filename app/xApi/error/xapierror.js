@@ -2,7 +2,7 @@
     function (app, router, xApi, templateSettings, dataContext, constants) {
         var allowToContinue = !templateSettings.xApi.required;
         
-        var restartCourse = function () {
+        var restartPath = function () {
             xApi.restart();
 
             router.navigate('');
@@ -19,7 +19,7 @@
       
         return {
             allowToContinue: allowToContinue,
-            restartCourse: restartCourse,
+            restartPath: restartPath,
             continueLearning: continueLearning,
             title: dataContext.learningPath.title
         };
