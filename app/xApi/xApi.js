@@ -116,7 +116,8 @@
         function getActivityStatement(verb) {
             var activityStatement = new ADL.XAPIStatement(actor, verb, activity);
             activityStatement.context = {
-                registration: attemptId,
+                // for now do not send attemptId, otherwise expand icon will be shown in editor.
+                //registration: attemptId,
                 extensions: {}
             };
             activityStatement.timestamp = (new Date()).toISOString();
