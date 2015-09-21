@@ -95,7 +95,7 @@
             var resultScore = dataContext.learningPath.getScore();
             var resultVerb = resultScore === 100 ? ADL.verbs.passed : ADL.verbs.failed;
             var resultStatement = getActivityStatement(resultVerb);
-            resultStatement.result = { score: resultScore };
+            resultStatement.result = { score: { scaled: resultScore / 100 } };
             requests.push(sendStatementIfAllowed(resultStatement));
 
             // send stopped statement
