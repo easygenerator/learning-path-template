@@ -9,7 +9,7 @@
         {
             route: 'login',
             moduleId: 'xApi/login/login',
-            title: 'xApi Login',
+            title: 'Login',
             hideExitButton: true,
             onlyHorizontalHeader: true
         },

@@ -36,6 +36,7 @@
 
             return dataContext.init().then(function () {
                 return userContext.init().then(function () {
+                    app.title = dataContext.learningPath.title;
                     // progress
                     progressStorage.init();
                     progressContext.init(progressStorage);
