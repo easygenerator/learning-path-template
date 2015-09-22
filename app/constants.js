@@ -1,7 +1,8 @@
 ﻿define([], function () {
     return {
         learningPath: {
-            dataUrl: 'data/data.json'
+            dataUrl: 'data/data.json',
+            progressStorageKey: 'learning_path_progress'
         },
         course: {
             manifestUrl: '/manifest.json',
@@ -19,6 +20,26 @@
             course: {
                 resultChanged: 'course:resultChanged',
                 resultStorageEntryUpdated: 'course:resultStorageEntryUpdated'
+            },
+            user: {
+                authenticated: 'user:authenticated',
+                authenticationSkipped: "user:authentication-skipped"
+            },
+            app: {
+                closed: "app:closed"
+            }
+        },
+        xApi: {
+            extenstionKeys: {
+                learningPathId: "http://easygenerator/expapi/learningpath/id"
+            }
+        },
+        progressContext: {
+            statuses: {
+                undefined: 'undefined',
+                saved: 'saved',
+                error: 'error',
+                ignored: 'ignored'
             }
         }
     };

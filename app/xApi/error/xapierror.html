@@ -1,0 +1,22 @@
+﻿<section id="xapiError" class="content-wrapper xapi-error-section">
+    <span class="default-logo"></span>
+    <div class="text-wrapper-xApi-error">
+        <div class="xapi-error-container">
+            <h1>Something is wrong</h1>
+            <!-- ko if: allowToContinue -->
+            <div class="xapi-error-container-description">If you continue without restarting, your learning progress will not be reported.</div>
+            <div class="xapi-error-container-buttons clearfix">
+                <button class="button danger large" data-bind="click: continueLearning" title="Continue anyway">Continue anyway</button>
+                <button class="button primary large" data-bind="click: restartPath" title="Restart path">Restart path</button>
+            </div>
+            <!-- /ko -->
+            <!-- ko ifnot: allowToContinue -->
+            <div class="xapi-error-container-description">Restart the path. Contact your path provider if the problem persists.</div>
+            <div class="xapi-error-container-buttons clearfix">
+                <button class="button primary large" data-bind="click: restartCourse" title="Restart path">Restart path</button>
+            </div>
+            <!-- /ko -->
+        </div>
+    </div>
+    <div class="footer-404"></div>
+</section>

@@ -1,4 +1,4 @@
-﻿define(['constants', 'data/models/course', 'data/courseResultProvider'], function (constants, Course, courseResultProvider) {
+﻿define(['constants', 'data/models/course', 'progress/courseResultProvider'], function (constants, Course, courseResultProvider) {
     "use strict";
 
     return {

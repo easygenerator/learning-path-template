@@ -1,4 +1,4 @@
-﻿define(['constants', 'durandal/app'], function (constants, app) {
+﻿define(['constants', 'durandal/app', 'xApi/xApi', 'utils'], function (constants, app, xApi, utils) {
     "use strict";
 
     var ctor = function (course) {
@@ -11,6 +11,10 @@
             score: ko.observable(course.score),
             constants: constants,
             progressTrackable: course.progressTrackable
+        };
+
+        viewModel.activate = function() {
+            viewModel.link = addAutoLoginParams(viewModel.link);
         };
 
         viewModel.statusTitle = ko.computed(function () {
@@ -33,6 +37,15 @@
             viewModel.score(courseData.score);
             viewModel.status(courseData.status);
         });
+
+        function addAutoLoginParams(courseLink) {
+            var currentUser = xApi.currentUser();
+            if (currentUser) {
+                courseLink = utils.updateQueryStringParameter(courseLink, 'name', currentUser.username);
+                courseLink = utils.updateQueryStringParameter(courseLink, 'email', currentUser.email);
+            }
+            return courseLink;
+        }
 
         return viewModel;
     };

@@ -22,15 +22,15 @@
             if (courses.length < 1)
                 return;
 
+            if (!value)
+                return;
+
             try {
                 result = JSON.parse(value);
             } catch (e) {
                 console.log('Unable to receive course result from localStorage');
                 return;
             }
-
-            if (!value)
-                return;
 
             app.trigger(constants.events.course.resultStorageEntryUpdated, courses[0].id, result);
         });

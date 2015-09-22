@@ -10,17 +10,19 @@
 define('jquery', function () { return jQuery; });
 define('knockout', function () { return ko; });
 
-define(['durandal/app', 'durandal/viewLocator', 'durandal/system'],
-    function (app, viewLocator, system) {
-        app.title = 'easygenerator';
+define(['durandal/app', 'durandal/viewLocator', 'durandal/system', 'templateSettings'],
+    function (app, viewLocator, system, templateSettings) {
         system.debug(false);
 
         app.configurePlugins({
-            http: true
+            http: true,
+            router: true
         });
 
         app.start().then(function () {
-            app.setRoot('shell/shell');
+            return templateSettings.init().then(function () {
+                app.setRoot('shell/shell');
+            });
         });
     }
 );

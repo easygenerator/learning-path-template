@@ -1,9 +1,11 @@
 ﻿define(['constants'], function (constants) {
     "use strict";
 
-    var ctor = function (title, courses) {
+    var ctor = function (id, title, createdOn, courses) {
         var that = {
+            id: id,
             title: title,
+            createdOn: createdOn,
             courses: courses,
             getScore: getScore,
             getCompletedCoursesCount: getCompletedCoursesCount,
