@@ -1,12 +1,12 @@
 ﻿define(['constants'], function (constants) {
     "use strict";
 
-    var ctor = function (id, title, createdOn, courses) {
+    function LearningPath (id, title, createdOn, entities) {
         var that = {
             id: id,
             title: title,
             createdOn: createdOn,
-            courses: courses,
+            entities: entities,
             getScore: getScore,
             getCompletedCoursesCount: getCompletedCoursesCount,
             getProgressTrackableCoursesCount: getProgressTrackableCoursesCount
@@ -25,8 +25,8 @@
 
         function getProgressTrackableCoursesCount() {
             var coursesCount = 0;
-            that.courses.forEach(function (course) {
-                if (course.progressTrackable) {
+            that.entities.forEach(function (entity) {
+                if (entity.progressTrackable) {
                     coursesCount++;
                 }
             });
@@ -36,8 +36,8 @@
 
         function getCompletedCoursesCount() {
             var coursesCount = 0;
-            that.courses.forEach(function (course) {
-                if (course.progressTrackable && course.status === constants.course.statuses.completed) {
+            that.entities.forEach(function (entity) {
+                if (entity.progressTrackable && entity.status === constants.course.statuses.completed) {
                     coursesCount++;
                 }
             });
@@ -46,5 +46,5 @@
         }
     };
 
-    return ctor;
+    return LearningPath;
 });

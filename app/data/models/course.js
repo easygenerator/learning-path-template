@@ -1,16 +1,13 @@
-﻿define(['durandal/app', 'constants'], function (app, constants) {
+﻿define(['durandal/app', 'constants', 'data/models/entity'], function (app, constants, Entity) {
     "use strict";
 
-    var ctor = function (title, link) {
-        var that = {
-            title: title,
-            link: link,
-            thumbnailUrl: '',
-            status: constants.course.statuses.notAttempted,
-            score: 0,
-            createdOn: undefined,
-            progressTrackable: true
-        };
+    function Course (title, link) {
+        var that = this;
+        Entity.call(this, title, link, true);
+        
+        this.thumbnailUrl = '';
+        this.status = constants.course.statuses.notAttempted,
+        this.score = 0;
 
         app.on(constants.events.course.resultStorageEntryUpdated, function (courseId, result) {
             if (courseId != that.id)
@@ -20,9 +17,7 @@
             that.status = result.status;
             app.trigger(constants.events.course.resultChanged, that);
         });
-
-        return that;
     };
 
-    return ctor;
+    return Course;
 });
