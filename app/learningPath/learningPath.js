@@ -5,7 +5,7 @@
         entities: [],
         title: '',
         activate: activate,
-        isCourse(entity) {
+        isCourse: function(entity) {
             return entity instanceof CourseViewModel;
         }
     };
