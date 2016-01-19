@@ -1,8 +1,13 @@
 ﻿<div class="learning-path-content">
     <h1 class="courses-title">Courses</h1>
     <ul class="courses-list">
-        <!-- ko foreach: courses -->
+        <!-- ko foreach: entities -->
+        <!-- ko if: $parent.isCourse($data) -->
         <!-- ko compose: { model: $data, view: 'course/course' } --><!-- /ko -->
+        <!-- /ko -->
+        <!-- ko ifnot: $parent.isCourse($data) -->
+        <!-- ko compose: { model: $data, view: 'document/index' } --><!-- /ko -->
+        <!-- /ko -->
         <!-- /ko -->
     </ul>
 </div>

@@ -14,7 +14,7 @@
                 value = event.originalEvent.newValue,
                 result;
 
-            var courses = dataContext.learningPath.courses.filter(function (item) {
+            var courses = dataContext.learningPath.entities.filter(function (item) {
                 var expectedKey = constants.course.resultStorageKey + item.id + item.createdOn;
                 return key === expectedKey;
             });

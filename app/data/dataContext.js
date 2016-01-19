@@ -1,4 +1,4 @@
-﻿define(['constants', 'data/models/learningPath', 'data/courseMapper'], function (constants, LearningPath, courseMapper) {
+﻿define(['constants', 'data/models/learningPath', 'data/mappers/courseMapper', 'data/mappers/documentMapper'], function (constants, LearningPath, courseMapper, documentMapper) {
     "use strict";
 
     var self = {
@@ -11,17 +11,21 @@
     function init() {
         return $.getJSON(constants.learningPath.dataUrl).then(function (data) {
             var promises = [];
-            data.courses.forEach(function (item) {
-                promises.push(courseMapper.map(item.title, item.link));
+            data.entities.forEach(function (item) {
+                if(item.type === constants.learningPathEntityType.course) {
+                    promises.push(courseMapper.map(item.title, item.link));
+                } else if(item.type === constants.learningPathEntityType.document) {
+                    promises.push(documentMapper.map(item.title, item.link));
+                }
             });
           
             return $.when.apply($, promises).then(function () {
-                var courses = [];
+                var entities = [];
                 for (var i = 0; i < arguments.length; i++) {
-                    courses.push(arguments[i]);
+                    entities.push(arguments[i]);
                 }
 
-                self.learningPath = new LearningPath(data.id, data.title, new Date(data.createdOn), courses);
+                self.learningPath = new LearningPath(data.id, data.title, new Date(data.createdOn), entities);
             });
         });
     }

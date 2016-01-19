@@ -1,24 +1,24 @@
 ﻿define(['constants', 'durandal/app', 'xApi/xApi', 'utils'], function (constants, app, xApi, utils) {
     "use strict";
 
-    var ctor = function (course) {
-        var viewModel = {
-            id: course.id,
-            title: course.title,
-            link: course.link,
-            thumbnailUrl: course.thumbnailUrl,
-            status: ko.observable(course.status),
-            score: ko.observable(course.score),
-            constants: constants,
-            progressTrackable: course.progressTrackable
+   function CourseViewModel (course) {
+       var that = this;
+       
+       this.id = course.id;
+       this.title = course.title;
+       this.link = course.link;
+       this.thumbnailUrl = course.thumbnailUrl;
+       this.status = ko.observable(course.status);
+       this.score = ko.observable(course.score);
+       this.constants = constants;
+       this.progressTrackable = course.progressTrackable;
+
+        this.activate = function() {
+            that.link = addAutoLoginParams(that.link);
         };
 
-        viewModel.activate = function() {
-            viewModel.link = addAutoLoginParams(viewModel.link);
-        };
-
-        viewModel.statusTitle = ko.computed(function () {
-            switch (viewModel.status()) {
+        this.statusTitle = ko.computed(function () {
+            switch (that.status()) {
                 case constants.course.statuses.inProgress:
                     return 'In progress';
                 case constants.course.statuses.completed:
@@ -31,11 +31,11 @@
         });
 
         app.on(constants.events.course.resultChanged, function (courseData) {
-            if (viewModel.id != courseData.id)
+            if (that.id != courseData.id)
                 return;
 
-            viewModel.score(courseData.score);
-            viewModel.status(courseData.status);
+            that.score(courseData.score);
+            that.status(courseData.status);
         });
 
         function addAutoLoginParams(courseLink) {
@@ -46,9 +46,7 @@
             }
             return courseLink;
         }
-
-        return viewModel;
     };
-
-    return ctor;
+    
+    return CourseViewModel;
 });

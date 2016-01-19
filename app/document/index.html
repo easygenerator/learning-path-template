@@ -1,0 +1,18 @@
+<li class="course-wrapper">
+    <a class="course" href="" data-bind="click: open">
+        <div class="course-progress">
+            <div class="circle-progress-bar" data-bind="circleProgress: { score: 0, status: ''}">
+                <div class="course-image-wrapper document" data-bind="css: { powerpoint: type === 1, pdf: type === 2, office: type === 3 }">
+                    <div class="course-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="course-title" data-bind="css: { 'middle': title.length > 60 && title.length <= 140, 'long': title.length > 140}">
+            <span class="course-title-text" data-bind="text: title"></span>
+        </div>
+        <div class="course-footer">
+            <div class="start-course-link">Start</div>
+        </div>
+    </a>
+</li>
