@@ -40,8 +40,8 @@
         removeProgressByKey(pathProgressKey);
 
         // remove results for path's courses.
-        dataContext.learningPath.courses.forEach(function (course) {
-            var courseResultKey = constants.course.resultStorageKey + course.id + course.createdOn;
+        dataContext.learningPath.entities.forEach(function (entity) {
+            var courseResultKey = constants.course.resultStorageKey + entity.id + entity.createdOn;
             removeProgressByKey(courseResultKey);
         });
     }
