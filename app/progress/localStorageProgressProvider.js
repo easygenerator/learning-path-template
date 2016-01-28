@@ -12,7 +12,7 @@
     return progressProvider;
 
     function init() {
-        pathProgressKey = constants.learningPath.progressStorageKey + dataContext.learningPath.id + dataContext.learningPath.createdOn;
+        pathProgressKey = constants.learningPath.progressStorageKey + dataContext.learningPath.id;
     }
 
     function getProgress() {
@@ -41,7 +41,7 @@
 
         // remove results for path's courses.
         dataContext.learningPath.entities.forEach(function (entity) {
-            var courseResultKey = constants.course.resultStorageKey + entity.id + entity.createdOn;
+            var courseResultKey = constants.course.resultStorageKey + entity.id;
             removeProgressByKey(courseResultKey);
         });
     }
