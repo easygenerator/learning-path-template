@@ -6,10 +6,14 @@
     };
 
     function getResult(courseId, createdOn) {
-        var key = constants.course.resultStorageKey + courseId + createdOn,
-            result = null;
+        var result = null;
         try {
-            result = JSON.parse(localStorage.getItem(key));
+            var value = localStorage.getItem(constants.course.resultStorageKey + courseId);
+            if (!value) {
+                value = localStorage.getItem(constants.course.resultStorageKey + courseId + createdOn);
+            }
+
+            result = JSON.parse(value);
         } catch (e) {
             console.log('Unable to restore course result from localStorage');
         }

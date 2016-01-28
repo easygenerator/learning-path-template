@@ -15,8 +15,7 @@
                 result;
 
             var courses = dataContext.learningPath.entities.filter(function (item) {
-                var expectedKey = constants.course.resultStorageKey + item.id + item.createdOn;
-                return key === expectedKey;
+                return key === constants.course.resultStorageKey + item.id || key === constants.course.resultStorageKey + item.id + item.createdOn;
             });
 
             if (courses.length < 1)
