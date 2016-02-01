@@ -32,6 +32,14 @@
         <!-- ko compose: { view: 'controls/loader' } --><!-- /ko -->
     </div>
     
+    <script type="text/javascript">
+        var require = {
+            baseUrl: 'app',
+            deps: ['main'],
+            urlArgs: 'v=buildVersion'
+        };
+    </script>
+    
     <!-- build:js js/vendor.min.js -->
     <script src="js/vendor/easy-supported-browser/easy-supported-browser.min.js" ></script>
     <script src="js/vendor/jquery/jquery.js"></script>
@@ -106,12 +114,6 @@
                 }
             }
         }).init();
-    
-        var require = {
-            baseUrl: 'app',
-            deps: ['main'],
-            urlArgs: 'v=buildVersion'
-        };
     </script>
     
 </body>
