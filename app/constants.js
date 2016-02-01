@@ -10,7 +10,7 @@
         },
         course: {
             manifestUrl: '/manifest.json',
-            defaultCourseThumbnailUrl: 'img/default.png',
+            defaultCourseThumbnailUrl: 'css/img/default.png',
             contentDataUrl: '/content/data.js',
             resultStorageKey: 'course_result',
             statuses: {
