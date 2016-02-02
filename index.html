@@ -19,7 +19,8 @@
     <link href='//fonts.googleapis.com/css?family=Roboto:500,400,300,100,700&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Roboto+Condensed&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
 
-    <!-- build:css css/easystyles/default.min.css -->
+    <!-- build:css css/vendor.min.css -->
+    <link href="js/vendor/easy-supported-browser/css/easy-supported-browser.min.css" rel="stylesheet" />
     <link href="css/easystyles/default.css" rel="stylesheet" />
     <!-- endbuild -->
     <!-- build:css css/styles.min.css -->
@@ -30,6 +31,7 @@
     <div id="applicationHost" class="application-wrapper">
         <!-- ko compose: { view: 'controls/loader' } --><!-- /ko -->
     </div>
+    
     <script type="text/javascript">
         var require = {
             baseUrl: 'app',
@@ -37,18 +39,82 @@
             urlArgs: 'v=buildVersion'
         };
     </script>
+    
     <!-- build:js js/vendor.min.js -->
+    <script src="js/vendor/easy-supported-browser/easy-supported-browser.min.js" ></script>
     <script src="js/vendor/jquery/jquery.js"></script>
     <script src="js/vendor/knockout.js/knockout.js"></script>
     <script src="js/vendor/underscore/underscore.js"></script>
     <script src="js/vendor/q/q.js"></script>
     <script src="js/vendor/requirejs/require.js"></script>
     <script src="js/xapiwrapper.min.js"></script>
-
     <!-- endbuild -->
     <!-- build:js js/components.min.js -->
     <script src="js/bindingHandlers/circleProgress.js"></script>
     <script src="js/bindingHandlers/dropDown.js"></script>
     <!-- endbuild -->
+    
+    <script type="text/javascript">
+        supportedBrowser.configure({
+            browsers: {
+                win: {
+                    chrome: {},
+                    firefox: {},
+                    msie: {},
+                    edge: {}
+                },
+                mac: {
+                    safari: {},
+                    chrome: {},
+                    firefox: {}
+                },
+                android: {
+                    native: {
+                        title: 'Android Browser',
+                        image: 'css/img/browsers/android.png'
+                    },
+                    chrome: {
+						version: 39
+					}
+                },
+                ios: {
+                    safari: {},
+                    chrome: {}
+                }
+            },
+            mainAppContainerId: 'applicationHost',
+            globalBrowsersInfo: {
+                chrome: {
+                    title: 'Google Chrome',
+                    link: 'http://www.google.com/chrome',
+                    image: 'css/img/browsers/chrome.png',
+                    version: 43
+                },
+                firefox: {
+                    title: 'Mozilla Firefox',
+                    link: 'http://www.mozilla.com/firefox',
+                    image: 'css/img/browsers/firefox.png',
+                    version: 33
+                },
+                msie: {
+                    title: 'Internet Explorer',
+                    link: 'http://windows.microsoft.com/en-US/internet-explorer/download-ie',
+                    image: 'css/img/browsers/ie.png',
+                    version: 11
+                },
+                edge: {
+                    title: 'Microsoft Edge',
+                    link: 'https://www.microsoft.com/en-us/windows/microsoft-edge',
+                    image: 'css/img/browsers/edge.png'
+                },
+                safari: {
+                    title: 'Apple Safari',
+                    link: 'http://www.apple.com/safari',
+                    image: 'css/img/browsers/safari.png'
+                }
+            }
+        }).init();
+    </script>
+    
 </body>
 </html>
