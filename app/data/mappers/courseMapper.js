@@ -10,6 +10,7 @@
 
         return $.getJSON(course.link + constants.course.contentDataUrl).then(function (courseData) {
             course.id = courseData.id;
+            course.templateId = courseData.templateId;
             course.createdOn = new Date(courseData.createdOn);
 
             setCourseResult();
@@ -29,7 +30,7 @@
         });
 
         function setCourseResult() {
-            var result = courseResultProvider.getResult(course.id, course.createdOn);
+            var result = courseResultProvider.getResult(course.id, course.templateId);
             if (!result)
                 return;
 

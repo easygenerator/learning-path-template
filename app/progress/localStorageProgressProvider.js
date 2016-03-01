@@ -1,5 +1,5 @@
 ﻿define(['data/dataContext', 'constants'], function (dataContext, constants) {
-    
+
     var pathProgressKey = null;
 
     var progressProvider = {
@@ -41,7 +41,7 @@
 
         // remove results for path's courses.
         dataContext.learningPath.entities.forEach(function (entity) {
-            var courseResultKey = constants.course.resultStorageKey + entity.id;
+            var courseResultKey = constants.course.resultStorageKey + entity.id + entity.templateId;
             removeProgressByKey(courseResultKey);
         });
     }
