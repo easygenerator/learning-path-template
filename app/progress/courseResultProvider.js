@@ -5,10 +5,10 @@
         getResult: getResult
     };
 
-    function getResult(courseId, createdOn) {
-        var key = constants.course.resultStorageKey + courseId,
+    function getResult(courseId, templateId) {
+        var key = constants.course.resultStorageKey + courseId + templateId,
             result = null;
-            
+
         try {
             result = JSON.parse(localStorage.getItem(key));
         } catch (e) {
