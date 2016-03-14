@@ -1,23 +1,15 @@
 define(['jsonReader'], function (jsonReader) {
 
-    var defaultTemplateSetting = {
-        xApi: {
-            enabled: true,
-            required: false,
-            selectedLrs: "default",
-            lrs: {
-                uri: "https://reports.easygenerator.com/xApi/",
-                credentials: {
-                    username: "",
-                    password: ""
-                },
-                authenticationRequired: false
-            },
-            allowedVerbs: ['started', 'stopped', 'passed', 'failed'],
-            version: "1.0.0"
-        }
+    var defaultLrs = {
+        uri: "https://reports.easygenerator.com/xApi/",
+        credentials: {
+            username: "",
+            password: ""
+        },
+        authenticationRequired: false
     };
 
+    var defaultVerbs = ['started', 'stopped', 'passed', 'failed'];
 
     return {
         init: init,
@@ -27,8 +19,12 @@ define(['jsonReader'], function (jsonReader) {
     function init() {
         var that = this;
         return jsonReader.read('settings.js').then(function (settings) {
-            var fullSettings = _.defaults(settings, defaultTemplateSetting);
-            that.xApi = fullSettings.xApi;
+            if (settings.xApi.selectedLrs === "default") {
+                settings.xApi.lrs = defaultLrs;
+                settings.xApi.allowedVerbs = defaultVerbs;
+            }
+            
+            that.xApi = settings.xApi;
         });
     }
 });

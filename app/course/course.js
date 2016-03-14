@@ -13,8 +13,8 @@
        this.constants = constants;
        this.progressTrackable = course.progressTrackable;
 
-        this.activate = function() {
-            that.link = addAutoLoginParams(that.link);
+       this.activate = function () {
+           that.link = xApi.enabled() ? addAutoLoginParams(that.link) : addSkipXapiParam(that.link);
         };
 
         this.statusTitle = ko.computed(function () {
@@ -38,9 +38,15 @@
             that.status(courseData.status);
         });
 
+        function addSkipXapiParam(courseLink) {
+            courseLink = utils.updateQueryStringParameter(courseLink, 'xapi', false);
+            return courseLink;
+        }
+
         function addAutoLoginParams(courseLink) {
             var currentUser = xApi.currentUser();
-            if (currentUser) {
+            if(currentUser)
+            {
                 courseLink = utils.updateQueryStringParameter(courseLink, 'name', currentUser.username);
                 courseLink = utils.updateQueryStringParameter(courseLink, 'email', currentUser.email);
             }
