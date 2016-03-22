@@ -1,1 +1,1 @@
-﻿{}
+{"xApi":{"enabled":true,"required":false,"selectedLrs":"default","lrs":{"uri":"test","authenticationRequired":false,"credentials":{"username":"","password":""}},"allowedVerbs":["started","stopped","answered","experienced"]}}

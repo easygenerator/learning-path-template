@@ -94,3 +94,16 @@ gulp.task('build', ['clean', 'styles'], function () {
        .pipe(gulp.dest(output + '/css/font'));
 });
 
+gulp.task('webserver', function () {
+    gulp.src('.')
+        .pipe($.webserver({
+            livereload: {
+                enable: true,
+                filter: function (fileName) {
+                    return !fileName.match(/.css/);
+                }
+            },
+            directoryListing: true,
+            open: "index.html"
+        }));
+});
