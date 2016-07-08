@@ -1,7 +1,7 @@
 ﻿define(['durandal/app', 'knockout', 'plugins/router', 'eventManager', 'userContext', 'xApi/xApi', 'templateSettings', 'constants'],
     function (app, ko, router, eventManager, userContext, xApi, templateSettings, constants) {
         "use strict";
-        var emailPattern = /^([\w\.\-]+)@([\w\-]+)((\.(\w){2,6})+)$/;
+        var emailPattern = /^[^@\s]+@[^@\s]+$/;
 
         var viewModel = {
             activate: activate,
