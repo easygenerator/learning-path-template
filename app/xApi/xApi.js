@@ -23,9 +23,15 @@
         return xApi;
 
         function init() {
+            //convert lrs uri to appropriate format
+            var lrsUri = templateSettings.xApi.lrs.uri.split('/statements')[0];
+            if (lrsUri.indexOf('/', lrsUri.length - 1) === -1) {
+                lrsUri = lrsUri + '/';
+            }
+
             // configure xapi wrapper to use specified lrs.
             var lrsConfiguration = {
-                endpoint: templateSettings.xApi.lrs.uri,
+                endpoint: lrsUri,
                 user: templateSettings.xApi.lrs.credentials.username,
                 password: templateSettings.xApi.lrs.credentials.password
             };
