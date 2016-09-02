@@ -15,6 +15,7 @@
 
        this.activate = function () {
            that.link = xApi.enabled() ? addAutoLoginParams(that.link) : addSkipXapiParam(that.link);
+           that.link = utils.updateQueryStringParameter(that.link, 'cross-device', false);  //disable cross device storage
         };
 
         this.statusTitle = ko.computed(function () {
