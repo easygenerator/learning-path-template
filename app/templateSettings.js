@@ -4,7 +4,7 @@ define(['jsonReader'], function (jsonReader) {
     var lrsHost = (host.indexOf('localhost') === 0 || host.indexOf('elearning-staging') === 0 || host.indexOf('elearning-branches') === 0) ? 'reports-staging.easygenerator.com' : 'reports.easygenerator.com';
 
     var defaultLrs = {
-        uri: "//" + lrsHost + "/xApi/",
+        uri: "https://" + lrsHost + "/xApi/",
         credentials: {
             username: "",
             password: ""

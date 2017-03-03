@@ -21,6 +21,7 @@
     "durandal": "~2.1.0",
     "q": "1.0.1",
     "underscore": "~1.8.3",
-    "easy-supported-browser": "~1.0.5"
+    "easygenerator-plugins": "^2.1.1",
+    "components-webfontloader": "^1.6.3"
   }
 }
