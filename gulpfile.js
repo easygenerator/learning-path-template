@@ -27,6 +27,11 @@ var config = {
 
 function addBuildVersion() {
     return eventStream.map(function (file, callback) {
+        var filePath = file.history[0];
+        if (filePath && filePath.match(/\.(js)$/gi)) {
+            callback(null, file);
+            return;
+        }
         var fileContent = String(file.contents);
         fileContent = fileContent
             .replace(/(\?|\&)v=([0-9]+)/gi, '') // remove build version
